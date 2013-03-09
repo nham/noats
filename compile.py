@@ -4,6 +4,7 @@ from glob import glob
 
 site_title = 'notes on assorted things'
 include_dir = 'includes/'
+exclude_files = ['readme.md', 'todo.md']
 
 
 def pandocConvert(fname):
@@ -25,7 +26,7 @@ def isPage(fname):
     pages = ['.md', '.rst']
     return ('.' in fname) \
         and (fname[fname.index('.'):] in pages) \
-        and fname != 'readme.md'
+        and fname not in exclude_files
 
 for fname in os.listdir('./'):
     if isPage(fname):
