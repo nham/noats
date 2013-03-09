@@ -1,4 +1,6 @@
-# Basic notions
+# Notes on computability
+
+## Basic notions
 Let $[n] = \{1, \ldots, n\}$. $\mathbb{P}$ is the positive integers, while $\mathbb{N}$ is the nonnegative integers (also referred to as the natural numbers).
 
 An **unlimited register machine (URM)** is
@@ -47,7 +49,7 @@ We might also think of introducing some kind of notion for the *trace* of an URM
 
 The state at the time when the URM stops running will be called the *final state*. If $s$ is the final state for an URM, then we will define the **output** of that URM to be $s(1)$. That is, the output of an URM is the value of the first register in the final state.
 
-# Computable functions
+## Computable functions
 
 The reason we care about so-called "outputs" of an URM is that we will be studying "computable functions", which are functions whose input/output pairs can be given by an URM. One consideration is that URMs may not terminate for every input. For instance, consider the set of URMs defined by these instructions:
 
