@@ -14,9 +14,7 @@ For any set $M$, we can form the **free monoid** on $M$, which we denote $F(M)$ 
 
 Each string of symbols, being a concatenation of some finite number of symbols, has associated with it a *length*, the (natural) number of symbols in the string. The monoid identity (the empty string) is the unique string of length 0 in $F(M)$.
 
-We can also think of *indexing* all the symbols in a string, so that if $x, y, z, w$ are symbols in $M$, then for some string $x y \cdots z w$ in $F(M)$, and we can assign an ordering $f(x) = 1$, $f(y) = 2$, $\ldots$, $f(z) = n-1$, $f(w) = n$ to the symbols in the string.
-
-We could be more formal about the above and say that the free monoid on a set $M$ consists of all the finite tuples of elements of $M$ together with a concatenation operation which takes two finite tuples, an $m$-tuple $a$ and an $n$-tuple $b$ \and returns a $(m+n)$-tuple where the first $m$ elements are $a$ (in the same order), and the remaining $n$ elements are $b$. Then the unique 0-tuple is the empty string, and the index of each symbol in a tuple provides the notion of the index of a symbol in a string.
+We could be more formal about the above and say that the free monoid on a set $M$ consists of all the finite tuples of elements of $M$ together with a concatenation operation which takes two finite tuples, an $m$-tuple $a$ and an $n$-tuple $b$ \and returns a $(m+n)$-tuple where the first $m$ elements are $a$ (in the same order), and the remaining $n$ elements are $b$. Then the unique 0-tuple is the empty string.
 
 A *sub-tuple* of a given tuple $(a_1, \ldots, a_n)$ is a tuple $(a_i, \ldots, a_j)$ for $1 \leq i \leq j \leq n$. We similarly speak of a *substring* of a string.
 </div>
@@ -48,3 +46,20 @@ It seems we could have just as well defined a derivation of $\textbf{A}$ as a se
 </div>
 
 # First order languages
+Some standard symbols used in logic are $\vee, \neg, \exists$ and $=$. We will call the first three *logical connectives*. A set of *variables* is any countable set $V$ disjoint from the four  previously mentioned symbols. We will use a particular set $\{x,y,z,w,x',y',z',w',w'', \ldots\}$ in this article. The set of variables + logical connectives + $=$ is called the **logical symbols**.
+
+A **signature** is a signature is a triple $(\mathcal{F}, \mathcal{R}, ar)$ where $\mathcal{F}$ is a set called *function symbols*, $\mathcal{R}$ is a set called *predicate symbols*, with $\mathcal{F}$ and $\mathcal{R}$ are disjoint. and $ar$ is function which assigns to each function and predicate symbol a natural number, called the *arity* of the symbol. We define sets for all $n \in \mathbb{N}$ $F_n = \{ ar_{pre}(n) \in \mathcal{F} \}$ and $R_n = \{ ar_{pre}(n) \in \mathcal{R} \}$, which are called the *n-ary function symbols* and the *n-ary predicate symbols*, respectively.
+
+A **first-order signature** is a tuple $(V, \mathcal{F}, \mathcal{R})$ where $V$ is a set of variables and $(\mathcal{F}, \mathcal{R})$ is a signature such that $=$ is a binary predicate and the other logical symbols are neither function nor predicate symbols. There is a set of symbols associated with each first-order signature $S$, which we will call the *underlying alphabet*, denoted $\Sigma(S)$. We associate a *index* with each symbol in the underlying alphabet $\Sigma(S)$, defined  in this way:
+
+ - for all $v \in V$ the index is 0
+ - $\neg$ has index 1, $\vee$ and $\exists$ have index 2
+ - n-ary function and predicate symbols have index $n$
+
+For a first-order signature $S$, we will create a formal language on the underlying alphabet $\Sigma(S)$ in this manner:
+
+The set of **terms** $T$ is defined inductively:
+ - $V \subseteq T$
+ - if $a_1, \ldots, a_n$ are in $T$ and $\textbf{f}$ is an n-ary function symbol, then $f a_1 \cdots a_n \in T$
+
+
