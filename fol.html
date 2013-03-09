@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>notes on assorted things - </title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+    q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+      <meta name="viewport" content="width=device-width">
+      <link rel="stylesheet" href="css/style.css">
+      <script data-main="js/main" src="js/require.js"></script>
+</head>
+<body>
+<div id="container">
+<h1 id="prerequisites">Prerequisites</h1>
+<p>As in every (or at least most.) branches of mathematical study, we will make use of variables to range over some set of objects. In other branches it is common to use letters like \(x\), \(y\), \(z\), \(S\), \(X\), \(\phi\) and so on to stand for said objects, but we have a complication here because we are studying formal systems and the variables inside them. The complication, essentially, is that we are using math to study math. We are assuming an ambient mathematical theory with which to conduct our study of formal mathematical theories. That is, we will be studying formal mathematical theories using a <em>metatheory</em>. Inside the metatheory we have <em>metavariables</em> which will stand for and range over (among other things) variables in the formal systems being studied.</p>
+<p>To avoid confusion, we must set out a special notation to make metavariables distinct from variables. We will use bold letters like \(\textbf{A}, \textbf{B}, \textbf{x}, textbf{y}\) for metavariables. Later on we will designate certain letters to stand exclusively for certain kinds of objects under study.</p>
+<h1 id="formal-systems">Formal systems</h1>
+<div class="chatter">
+<p>Here we are concerned with studying strings of symbols and operations on these strings. So first we will consider a set of symbols by taking any set, \(S\), and treating each of its elements as a symbol. Formally it’s just a set, but we should keep in mind that we are dealing with symbols.</p>
+<p>(Quote Shoenfield here by saying a symbol is something you can write on a page)</p>
+<p>For any set \(M\), we can form the <strong>free monoid</strong> on \(M\), which we denote \(F(M)\) and which consists of the set of all finite strings of symbols in \(M\) together with an operation for <em>concatenating</em> two strings together. Being a monoid, we of course have an <q>identity</q> symbol, the <em>empty string</em>, which consists of no symbols at all. Concatenating any string with the empty string, in either order, results in the original string.</p>
+<p>Each string of symbols, being a concatenation of some finite number of symbols, has associated with it a <em>length</em>, the (natural) number of symbols in the string. The monoid identity (the empty string) is the unique string of length 0 in \(F(M)\).</p>
+<p>We could be more formal about the above and say that the free monoid on a set \(M\) consists of all the finite tuples of elements of \(M\) together with a concatenation operation which takes two finite tuples, an \(m\)-tuple \(a\) and an \(n\)-tuple \(b\) returns a \((m+n)\)-tuple where the first \(m\) elements are \(a\) (in the same order), and the remaining \(n\) elements are \(b\). Then the unique 0-tuple is the empty string.</p>
+A <em>sub-tuple</em> of a given tuple \((a_1, \ldots, a_n)\) is a tuple \((a_i, \ldots, a_j)\) for \(1 \leq i \leq j \leq n\). We similarly speak of a <em>substring</em> of a string.
+</div>
+
+<p>A <strong>formal language</strong> is a pair \(L = (\Sigma, F)\) where \(\Sigma\) is a set and \(F \subseteq F(\Sigma)\) (\(F\) is subset of the free monoid on \(\Sigma\)). The set \(A\) is called the <em>alphabet</em> of \(L\), and \(F\) is called the <em>formulae</em> of \(L\). A <em>subformula</em> of a formula \(\textbf{A}\) is a formula of \(F\) that’s also a substring of \(\textbf{A}\).</p>
+<div class="chatter">
+<p>A formal language is a model of a system of strings where only some of the strings are considered <em>well-formed</em> (i.e., the formulae).</p>
+We can build on top of this notion by considering a system where only some of the well-formed strings are <em>true</em>. Such a system is called a <em>formal system</em>:
+</div>
+
+<p>A <strong>formal system</strong> is a triple \(\Phi = (\Sigma, F, R \subset \mathcal{F} \times F)\) where \((\Sigma, F)\) is a formal language and \(R\) is a relation on the powerset of \(F\) and \(F\), which we call the <em>rules of inference</em>. For every pair in this relation, the left term is a set of formulae called the <em>hypotheses</em> or <em>premise</em>, and the right term is a formula called the <em>conclusion</em>. The set of rules which have the empty set as the left term are called <em>axioms</em>.</p>
+<div class="chatter">
+<p>We might have simply specified the subset of \(F\) which constitutes the true formulae of the system, but that doesn’t give us much structure to work with. Also, the motivation here comes from mathematics, where we don’t know in advance which formulae are true. All we know is methods for producing new true formulae from previously known true formulae, and our task is to discover valid derivations of expressions which seem to be true.</p>
+<p>Speaking of derivations, we can introduce this notion formally. The idea is that we build up a collection of <q>true</q> formulas (theorems) by starting with some specified set of formulas \(\Gamma\) and producing new formulas via the rules of inference. I.e. we take rules whose premises are true and add their conclusions to the collection of true formulas. If \(\Gamma = \emptyset\), then the formulas derivable from there are the <em>theorems</em> of the formal system. (Recall that even starting from the empty set, we can pull all the axioms into the set of theorems, then using the axioms use rules to derive more theorems.)</p>
+Formally:
+</div> 
+
+<p>A <strong>derivation</strong> in a formal system \(\Phi\) of a formula \(\textbf{A}\) from a set of formulas \(\Gamma\) is a sequence (tuple, really) of formulas ending in \(\textbf{A}\) such that each term is either in \(\Gamma\) or is the conclusion of a rule whose hypotheses are all previous terms in the sequence. We will say that \(\textbf{A}\) is <em>derivable</em> or <em>inferrable</em> from \(\Gamma\) if there’s a derivation of \(\textbf{A}\) from \(\Gamma\) in \(\Phi\), and we will denote this in symbols by \(\Gamma \vdash_{\Phi} \textbf{A}\).</p>
+<p>If \(\textbf{A}\) is derivable from \(\Gamma = \emptyset\), we will use the shorthand notation \(\vdash_{\Phi} \textbf{A}\). Such a formula is called a <strong>theorem</strong> of \(\Phi\).</p>
+<div class="chatter">
+It seems we could have just as well defined a derivation of \(\textbf{A}\) as a sequence of rules ending in a rule whose conclusion is \(\textbf{A}\), with each term being a rule whose premises are either in \(\Gamma\) or are conclusions of previous rules in the sequence. Is there any advantage or disadvantage to this?
+</div>
+
+<h1 id="first-order-languages">First order languages</h1>
+<p>Some standard symbols used in logic are \(\vee, \neg, \exists\) and \(=\). We will call the first three <em>logical connectives</em>. A set of <em>variables</em> is any countable set \(V\) disjoint from the four previously mentioned symbols. We will use a particular set \(\{x,y,z,w,x&#39;,y&#39;,z&#39;,w&#39;,w&#39;&#39;, \ldots\}\) in this article. The set of variables + logical connectives + \(=\) is called the <strong>logical symbols</strong>.</p>
+<p>A <strong>signature</strong> is a signature is a triple \((\mathcal{F}, \mathcal{R}, ar)\) where \(\mathcal{F}\) is a set called <em>function symbols</em>, \(\mathcal{R}\) is a set called <em>predicate symbols</em>, with \(\mathcal{F}\) and \(\mathcal{R}\) are disjoint. and \(ar\) is function which assigns to each function and predicate symbol a natural number, called the <em>arity</em> of the symbol. We define sets for all \(n \in \mathbb{N}\) \(F_n = \{ ar_{pre}(n) \in \mathcal{F} \}\) and \(R_n = \{ ar_{pre}(n) \in \mathcal{R} \}\), which are called the <em>n-ary function symbols</em> and the <em>n-ary predicate symbols</em>, respectively.</p>
+<p>A <strong>first-order signature</strong> is a tuple \((V, \mathcal{F}, \mathcal{R})\) where \(V\) is a set of variables and \((\mathcal{F}, \mathcal{R})\) is a signature such that \(=\) is a binary predicate and the other logical symbols are neither function nor predicate symbols. There is a set of symbols associated with each first-order signature \(S\), which we will call the <em>underlying alphabet</em>, denoted \(\Sigma(S)\). We associate a <em>index</em> with each symbol in the underlying alphabet \(\Sigma(S)\), defined in this way:</p>
+<ul>
+<li>for all \(v \in V\) the index is 0</li>
+<li>\(\neg\) has index 1, \(\vee\) and \(\exists\) have index 2</li>
+<li>n-ary function and predicate symbols have index \(n\)</li>
+</ul>
+<p>For a first-order signature \(S\), we will create a formal language on the underlying alphabet \(\Sigma(S)\) in this manner:</p>
+<p>The set of <strong>terms</strong> \(T\) is defined inductively: - \(V \subseteq T\) - if \(a_1, \ldots, a_n\) are in \(T\) and \(\textbf{f}\) is an n-ary function symbol, then \(f a_1 \cdots a_n \in T\)</p>
+    <footer>
+    <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/">
+      <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+    </a>
+    <p xmlns:dct="http://purl.org/dc/terms/">
+      To the extent possible under law, the person who associated CC0 with this work has waived all copyright and related or neighboring rights to this work.
+    </p>
+    </footer>
+</div>
+</body>
+</html>
