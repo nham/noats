@@ -8,7 +8,7 @@ An **unlimited register machine (URM)** is
  - an *initial register state* $\text{init}: \mathbb{P} \rightarrow \mathbb{N}$
  - a k-tuple $(I_1, \ldots, I_k)$ of *instructions*, where each $I_j$ is one of the following: $(Z, n)$, $(S, n)$, $(T, m, n)$, $(J, m, n, i)$ with $m, n, i \in \mathbb{P}$.
 
-The interpretation is that an URM is a machine with an infinite collection of registers, each register capable of storing an arbitrarily large natural number. The machine accepts four different kinds of instructions: a *zero* instruction, $(Z, n)$, for setting the $n$-th register to 0, a *successor* instruction, $(S, n)$ for incrementing te $n$-th register by 1, a *transfer* instruction, $(T, m, n)$ for copying the current contents of register $m$ to register $n$, and a *jump* instruction, $(J, m, n, i)$, which compares the values in registers $m$ and $n$ and sets the next instruction to be instruction $i$ iff the values are equal.
+The interpretation is that an URM is a machine with an infinite collection of registers, each register capable of storing an arbitrarily large natural number. The machine accepts four different kinds of instructions: a *zero* instruction, $(Z, n)$, for setting the $n$-th register to 0, a *successor* instruction, $(S, n)$ for incrementing the $n$-th register by 1, a *transfer* instruction, $(T, m, n)$ for copying the current contents of register $m$ to register $n$, and a *jump* instruction, $(J, m, n, i)$, which compares the values in registers $m$ and $n$ and sets the next instruction to be instruction $i$ iff the values are equal.
 
 We will often abbreviate the above instructions as $Z\ n$, $S\ n$, $T\ m\ n$, and $J\ m\ n\ i$.
 
