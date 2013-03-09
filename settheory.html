@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>notes on assorted things - </title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+      <meta name="viewport" content="width=device-width">
+      <link rel="stylesheet" href="css/style.css">
+      <script data-main="js/main" src="js/require.js"></script>
+</head>
+<body>
+<div id="container">
+<p>One fact that’s important for some lemmas in topology is this: Given \(A\), \(B\) are subsets of \(X\), then \(A \subseteq X - B\) iff \(B \subseteq X - A\). There are two ways to see this:</p>
+<ol type="1">
+<li><p>First we need the following lemma: \(A \subseteq B\) iff \(X-B \subseteq X-A\). This is easily proved via taking the contrapositive. You can also think pictorially: if \(A\) is just a section of \(B\), then inverting \(A\) and \(B\) results in the inversion of \(B\) being just a section of the inversion of \(A\). With this lemma, it is straightforward to prove. \(A \subseteq X-B\) implies \(X - (X - B) \subseteq X - A\), and \(X - (X - B) = B\).</p></li>
+<li><p>For \(x \in X\), \(A \subseteq X - B\) really means that \(x \in A\) implies that \(x \notin B\). Take the contrapositive: \(x \in B\) implies \(x \notin A\), or \(B \subseteq X - A\). The other way obviously works too.</p></li>
+</ol>
+<p>This fact is especially important for reasoning about closed sets, since our definitions are in terms of open sets and complements of closed sets are open.</p>
+<hr>
+<p>If \(A \subseteq B\) and \(X\) intersects \(A\), then \(X\) intersects \(B\). Kind of obvious, but there you go.</p>
+<hr>
+<p>If f( f^pre( S ) ) = S, but f^pre( f ( S ) ) is a strict superset of S unless f is injective. (There’s actually a weaker condition that works: we just need S to be the only points that map into f(S)). The LHS of the first is the image of all the points that map into S, which is obviously still S. The LHS of the second is the set of all points that map into the same points that S maps into, which could be more than just S.</p>
+    <footer>
+    <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/">
+      <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+    </a>
+    <p xmlns:dct="http://purl.org/dc/terms/">
+      To the extent possible under law, the person who associated CC0 with this work has waived all copyright and related or neighboring rights to this work.
+    </p>
+    </footer>
+</div>
+</body>
+</html>
