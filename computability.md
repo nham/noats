@@ -67,6 +67,34 @@ Which brings us to our second point, which we touched on above: for any given in
 
 Hence, we need a broader class of functions than those normally used in mathematics. We need to consider *partial funcitons*, which are just like total functions, except that they  may not be defined for every point in the domain. In the example above the URM "computes" the empty function, which is the (partial) function defined nowhere. This is our first example of a computable function.
 
-An **URM-computable function** is a partial function $f: \mathbb{N}^n \rightarrow \mathbb{N}$ such that there is an URM $M$ for which $x \in Dom(f)$ iff when $x$ is the input of $M$, the output of $M$ is $f(x)$.
+An **URM-computable function** is a partial function $f: \mathbb{N}^n \rightarrow \mathbb{N}$ for some $n \in \mathbb{N}$ such that there is an URM $M$ for which $x \in Dom(f)$ (i.e. $x$ is in the subset of $\mathbb{N}^n$ on which $f$ is defined) iff when $x$ is the input of $M$, the output of $M$ is $f(x)$. In this case we also say that $M$ **computes** $f$.
 
 From now on, "function" means "partial function" (though we will occasionally explicitly distinguish between total and partial functions). Also, we will use "computable" as shorthand for "URM-computable" unless otherwise noted.
+
+We will also need a piece of shorthand. When we say that an URM $M$ has an input $(x_1, \ldots, x_n)$, we mean that the first $n$ registers are $x_1$ through $x_n$, and all the registers after that are zero. This will be useful for setting the input of an URM to an element $x = (x_1, \ldots, x_n)$ in the domain of a function $f: \mathbb{N}^n \rightarrow \mathbb{N}$.
+
+### Example
+
+Let's prove that the following function is computable:
+
+$$ f(x) := \cases{
+    \frac{x}{2} & \text{if } x \text{ is even} \cr
+    \text{undefined} & \text{otherwise}}$$
+
+To do this we will find a tuple of instructions which leads to an URM that terminates only when the initial state is an even number, and which does not terminate when the initial state is an odd number.
+
+$$ [J\ 1\ 3\ 5]; [S\ 2]; [S\ 3]; [S\ 3]; [J\ 1\ 1\ 1]; [T\ 2\ 1]$$
+
+The strategy is to add two's up until we get our number, then return the number of two's we had to add. This strategy handles the case of an odd number since we can never add up two's and get an odd number. Hence the initial jump instruction, $[J\ 1\ 3\ 5]$ will never jump if the initial number is odd.
+
+To be boringly thorough, we prove this explicitly: If we are given an input of $n = 2k$ for some $k$, then the instructions $I_1$ through $I_4$ will be repeated $k$ times. At this point the state is $(n, k, n, 0, 0, \ldots)$ and the instruction counter is $1$ (due to $I_4$). We then execute $I_1$, and the equality check works, so the instruction counter is updated to $5$. $I_5$ then changes the state to $(k, k, n, 0, 0, \ldots)$, and the machine terminates. So the output is $k$.
+
+On the other hand, if the input $n$ is not even, then the equality check in $I_1$ will never succeed, because if we did we would have $n = 2k$ for some $k$, which could not be the case. If that check never succeeds, we will never break out of the loop of instructions $I_1$ through $I_4$. So the machine will never terminate.
+
+So the URM above is an implementation of the function $f$, and thus $f$ is computable.
+
+We should note here that the above tuple of instructions is not the only URM that computes $f$. We could have swapped registers 2 and 3, for instance. We could also add any number of pointless instructions, for instance incrementing the 9-billionth register 5 times on each loop. Such instructions have no effect on the rest of the program, and the only thing that matters in the output is the value of the first register in the final state.
+
+We could have used an entirely different strategy, as well. Consider subtracting 1 from the input and adding 1 to a counter until both values are equal. If the input is even, this will terminate when the input is halved. If it is odd, it will never terminate. The big picture reason is that for an integer $n = 2k + 1$, after substracting $k$, the value will equal $k + 1$ and the counter will equal $k$, and the next decrement/increment will just swap the values. So these two values will never be equal.
+
+Unfortunately, this program is a bit difficult to construct, primarily because we don't have a primitive decrement instruction. We will go ahead and do it anyways for fun and/or practice, but if you already get the point, feel free to skip to the next section. The main thing to realize here is that computable functions are not in one-to-one correspondence with URMs.
