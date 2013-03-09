@@ -58,3 +58,13 @@ Given any initial register state, each machine does essentially the same thing: 
 We need to clean up some loose / ambiguous language here. I've been talking about "inputs" to a machine and I've just considered all the machines with the same list of instructions to be "the same". Remember: the initial state was considered to be part of the data specifying an URM, meaning if you change the initial state, you get a different machine.
 
 However, as we saw above, we have instances where "different machines" behave basically identically. This sounds like a job for an equivalence relation! The equivalence classes will be the set of all machines with the same tuple of instructions. Then each class of URMs differs only by the initial configuration. We  might call each equivalence class a "dynamic URM", but it actually be more useful to consider this more general notion to be the "real" definition of an URM. So let's rename our original definition to something like "static URM", and then say an URM is an equivalence class of static URMs with the same instruction tuple.
+
+It now makes sense to talk about an "input" to an URM: an **input** of an URM is a state of the machine. Given an input, we can select the static URM in the equivalence class with an initial state the same as the input state and start running that static machine.
+
+Which brings us to our second point, which we touched on above: for any given input, the machine might not terminate. In our first example, the machine didn't terminate for *any* input. If we have in mind the idea of representing functions by a machine, it seems that some inputs will have no outputs.
+
+Hence, we need a broader class of functions than those normally used in mathematics. We need to consider *partial funcitons*, which are just like total functions, except that they  may not be defined for every point in the domain. In the example above the URM "computes" the empty function, which is the (partial) function defined nowhere. This is our first example of a computable function.
+
+An **URM-computable function** is a partial function $f: \mathbb{N}^n \rightarrow \mathbb{N}$ such that there is an URM $M$ for which $x \in Dom(f)$ iff when $x$ is the input of $M$, the output of $M$ is $f(x)$.
+
+From now on, "function" means "partial function" (though we will occasionally explicitly distinguish between total and partial functions). Also, we will use "computable" as shorthand for "URM-computable" unless otherwise noted.
