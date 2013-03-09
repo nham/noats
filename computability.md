@@ -45,7 +45,7 @@ $$ u(p, I, s) := \cases{
 
 Here's a question: what happens when the instruction counter no longer points to a valid instruction (by acquiring a value that exceeds the index on the last instruction)? We can't really expect the URM to do anything, so it must stop. Therefore, supposing that an URM has $k$ instructions, the machine runs as long as its instruction counter has a value in $[k]$.
 
-We might also think of introducing some kind of notion for the *trace* of an URM, meaning the sequence of states that the machine goes through. This could be useful, but it turns out that it is more interesting to consider the *final* state of the machine. Actually, we don't need the whole state, just the state of one of the registers.
+We might also think of introducing some kind of notion for the *trace* of an URM, meaning the sequence of states that the machine goes through. This could be useful, but it turns out that it is more interesting to consider just the *final* state of the machine. Actually, we don't need the whole state, just the state of one of the registers.
 
 The state at the time when the URM stops running will be called the *final state*. If $s$ is the final state for an URM, then we will define the **output** of that URM to be $s(1)$. That is, the output of an URM is the value of the first register in the final state.
 
