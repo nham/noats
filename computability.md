@@ -98,3 +98,36 @@ We should note here that the above tuple of instructions is not the only URM tha
 We could have used an entirely different strategy, as well. Consider subtracting 1 from the input and adding 1 to a counter until both values are equal. If the input is even, this will terminate when the input is halved. If it is odd, it will never terminate. The big picture reason is that for an integer $n = 2k + 1$, after substracting $k$, the value will equal $k + 1$ and the counter will equal $k$, and the next decrement/increment will just swap the values. So these two values will never be equal.
 
 Unfortunately, this program is a bit difficult to construct, primarily because we don't have a primitive decrement instruction. We will go ahead and do it anyways for fun and/or practice, but if you already get the point, feel free to skip to the next section. The main thing to realize here is that computable functions are not in one-to-one correspondence with URMs.
+
+To begin, we'll construct a machine for decrementing the input by one. It should only not terminate if the input is zero.
+
+$$ [S\ 3]; [J\ 1\ 3\ 6]; [S\ 2]; [S\ 3]; [J\ 1\ 1\ 2]; [T\ 2\ 1]$$
+
+You can check that this computes the function $f(x) := x - 1$, with $f(0)$ undefined.
+
+If we had a decrement or *predecessor* instruction $[P\ n]$, we could make an alternative machine in this way:
+
+$$ [J\ 1\ 2\ 5]; [P\ 1]; [S\ 2]; [J\ 1\ 1\ 1]$$
+
+If we squint hard enough, we can see that our machine for computing $f(x) = x - 1$ can be thought of as a kind of decrement instruction. So we'll try to just plug it in.
+
+The complication is that the subtract-by-1 machine (call it $O$) and the work-in-progress divide-by-2 machine step on each others toes. $O$ doesn't just subtract one from the first register -- it uses other registers in the process. So we need to ensure that it doesn't mess with any registers that the divide-by-2 machine depends on.
+
+Here's a modification of $O$:
+
+$$ [S\ 4]; [J\ 1\ 4\ 6]; [S\ 3]; [S\ 4]; [J\ 1\ 1\ 2]; [T\ 3\ 1]; [Z\ 3]; [Z\ 4]$$
+
+I've changed two things here. The first is to move the registers we use from 2 and 3 to 3 and 4. This is needed because the halving machine that we're making already uses register 2 as a counter. The second change is to zero out registers 3 and 4 at the end. This is needed because we're going to be decrementing multiple times, and we need a clean workspace every time we start again.
+
+One last thing: the jump instruction indices need to be changed so that they work harmoniously in the new combined program:
+ 
+$$
+\begin{split}
+&[J\ 1\ 2\ 12];\\
+&[S\ 4]; [J\ 1\ 4\ 7]; [S\ 3]; [S\ 4]; [J\ 1\ 1\ 3]; [T\ 3\ 1]; [Z\ 3]; [Z\ 4];\\
+&[S\ 2];\\
+&[J\ 1\ 1\ 1]
+\end{split}
+$$
+
+This URM also computes $f$, though it is much more complicated (and less efficient!) than our previous machine. It is easy enough to verify (at least through an example) that the machine works in case the input is even. But does the machine not terminate if the input is odd? If you trace the execution, eventually the machine's state becomes $(0, 3, 0, 0, \ldots)$. At that point it jumps back to the first instruction, the check fails, so it goes to the second line to subtract one from the first register, which in this case is 0. The subtraction sub-process here fails to terminate, for the same reason that the standalone subtraction machine failed to terminate for inputs of 0.
