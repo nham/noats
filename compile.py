@@ -23,7 +23,9 @@ def pandocConvert(fname):
 
 def isPage(fname):
     pages = ['.md', '.rst']
-    return ('.' in fname) and (fname[fname.index('.'):] in pages)
+    return ('.' in fname) \
+        and (fname[fname.index('.'):] in pages) \
+        and fname != 'readme.md'
 
 for fname in os.listdir('./'):
     if isPage(fname):
