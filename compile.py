@@ -4,7 +4,7 @@ from glob import glob
 
 site_title = 'notes on assorted things'
 include_dir = 'includes/'
-exclude_files = ['readme.md', 'todo.md']
+exclude_files = ['readme.md']
 
 
 def pandocConvert(fname):
