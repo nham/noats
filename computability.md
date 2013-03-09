@@ -55,7 +55,7 @@ $$ [S\ 1]; [J\ 1\ 1\ 1] $$.
 
 Given any initial register state, each machine does essentially the same thing: increment the first register forever. The machine will never stop. Does this machine correspond to a function?
 
-We need to clean up some loose / ambiguous language here. I've been talking about "inputs" to a machine and I've just considered all the machines with the same list of instructions to be "the same". Remember: the initial state was considered to be part of the data specifying an URM, meaning if you change the initial state, you get a different machine.
+We need to clean up some loose/ambiguous language here. I've been talking about "inputs" to a machine and I've just considered all the machines with the same list of instructions to be "the same". That clearly doesn't make any sense. Remember: the initial state was considered to be part of the data specifying an URM, meaning if you change the initial state, you get a different machine.
 
 However, as we saw above, we have instances where "different machines" behave basically identically. This sounds like a job for an equivalence relation! The equivalence classes will be the set of all machines with the same tuple of instructions. Then each class of URMs differs only by the initial configuration. We  might call each equivalence class a "dynamic URM", but it actually be more useful to consider this more general notion to be the "real" definition of an URM. So let's rename our original definition to something like "static URM", and then say an URM is an equivalence class of static URMs with the same instruction tuple.
 
