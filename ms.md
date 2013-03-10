@@ -18,7 +18,7 @@ The most common formulation of metric spaces (and definitely easier to work with
 
 An **open ball** of radius r around x is the set of all points in the metric space that are less than a distance r from x. In symbols:
 
-  $$ B_r(x_0) = \{ 
+  $$ B_r(x_0) = \{ x : d(x, x_0) < r \}$$
 
+An **open set** is a set $U$ such that every $x \in U$ has an open ball $B_\epsilon(x)$ which is entirely contained in $U$. An **open neighborhood* of $x$ is an open set that contains $x$. A **neighborhood** of $x$ is a set that contains an open neighborhood of $x$.
 
-A common usage of "neighborhood" of a point $x$ is a set that contains an open set that contains $x$. This practice is not universal, however, as Munkres' book reserves "neighborhood" for an *open set* that contains $x$. We can reconcile this disparity by keeping "neighborhood" for the first usage, but calling the second usage an *open neighborhood*. Or, for fun, we could invent a new word, something like a *transparency* of $x$. A transparency is a neighborhood of all of its points.
