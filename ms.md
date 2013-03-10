@@ -63,4 +63,20 @@ Above we used open neighborhoods to define neighborhoods. We could have gone in 
 
 **Lemma**: In metric space $(X, d)$, a set $U \subseteq X$ is open iff for every $y \in U$, $U \in \mathcal{N}_y$
 
-*Proof:* If $U$ is open, then it clearly holds because open balls are open sets. Conversely, if $U$ is a neighborhood of every one of its elements, then every $y \in U$ has an open set $O_y$ contained in $U$, and that $O_y$ contains an open ball of $y$. $\Box$
+*Proof:* If $U$ is open, then it clearly holds because open balls are open sets.
+
+Conversely, if $U$ is a neighborhood of every one of its elements, then every $y \in U$ has an open set $O_y$ contained in $U$, and that $O_y$ contains an open ball of $y$. Alternatively, $U = \bigcup_y O_y$, and any union of open sets is open (by the topology lemma for open sets). $\Box$
+
+A set $S$ is **closed** in metric space $X$ if its complement $X - S$ is open. An result analogous to the topology lemma for open sets can be proved:
+
+**Topology Lemma for Closed Sets:** In a metric space $(X, d)$:
+
+ 1. $\emptyset$, $X$ are both closed.
+ 2. If $\mathcal{S}$ is an arbitrary collection of closed sets in $X$, then $\bigcap \mathcal{S}$ is closed.
+ 3. If $U_1$ and $U_2$ are closed subsets of $X$, then $X_1 \cup X_2$ is closed.
+
+*Proof:* (1) is immediate. The rest can be proved using DeMorgan's law [$X - (A \cup B) = (X-A) \cap (X-B)$] and the TLFOS. $\Box$
+
+The **closure** of a set $S$ in $X$, written $\overline{S}$, is defined as the minimal closed set containing $S$. In symbols:
+
+$$ \overline{S} := \bigcap \{ F : S \subseteq F, F \text{ is closed} \}$$ 
