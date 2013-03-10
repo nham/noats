@@ -80,3 +80,18 @@ A set $S$ is **closed** in metric space $X$ if its complement $X - S$ is open. A
 The **closure** of a set $S$ in $X$, written $\overline{S}$, is defined as the minimal closed set containing $S$. In symbols:
 
 $$ \overline{S} := \bigcap \{ F : S \subseteq F, F \text{ is closed} \}$$ 
+
+**Alternate characterization of closures:** 
+$$
+\begin{split}
+\overline{S} &= \{ x : \forall N \in \mathcal{N}_x N \cap S \neq \emptyset \}\\
+&= \{ x : \forall U \in \mathcal{O}_x U \cap S \neq \emptyset \}\\
+&= \{ x : \forall \epsilon > 0 B_\epsilon(x) \cap S \neq \emptyset \}
+\end{split}
+$$
+
+*Proof:* Call the first set $N$, the second set $O$, the third set $B$. If $x \in N$ then $x \in O$ because every open neighborhood of $x$ is a neighborhood of $x$. So $N \subseteq O$. All open balls of $x$ are open neighborhoods of $x$, so similarly $O \subseteq B$. 
+
+If $x \in B$, then $x$ is in every closed $C$ containing $S$, because it could not possibly be in $X-C$, which is a subset of $X - S$ and is open and must therefore contain an open ball around every point (every open ball around $x$ intersects $S$). So $B \subseteq \overline{S}$.
+
+Finally, $S \subseteq N$ and $N$ must be closed because if $y \in X - N$ then some neighborhood $M$ of $y$ doesn't intersect $S$ (otherwise $y$ would be in $N$), and $M$ contains an open ball of $y$, so that open ball is entirely contained in $X - N$. Thus $X - N$ is open, and $\overline{S} \subset N$ because $\overline{S}$ is defined to be the minimal closed set containing $S$.
