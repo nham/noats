@@ -38,6 +38,22 @@ That's our $\xi$, then. Set $\xi = \epsilon - \delta$. Every point in the $\xi$-
 
 We can restate the above proof with more words: after traveling from $x$ to $y$, we used up some $\delta$ of distance. If we go $\epsilon - \delta$ more distance from $y$, it is possible that we will get outside of the $\epsilon$-ball. So set $\epsilon - \delta$ as the radius we must stay strictly inside. This is an open ball around $y$ that is contained in the $\epsilon$-ball around $x$. $\Box$
 
+The following lemma is fundamentally important.
+
+**Topology Lemma for Open Sets:** In a metric space $(X, d)$:
+
+ 1. $\emptyset$, $X$ are both open.
+ 2. If $\mathcal{S}$ is an arbitrary collection of open sets in $X$, then $\bigcup \mathcal{S}$ is open
+ 3. If $U_1$ and $U_2$ are open subsets of $X$, then $X_1 \cap X_2$ is open.
+
+Proof: 
+
+(1) $\emptyset$ is vacuously open. $X$ is open because it contains *every* open ball, so it certainly contains *an* open for every point.
+
+(2) If $x \in \bigcup \mathcal{S}$, then it must be in some open $U \in \mathcal{S}$. So  $\exists B_\epsilon(x) \subseteq U \subseteq \bigcup \mathcal{S}$. The arbitrary union of open sets is thus open.
+
+(3) If $x \in U_1 \cap U_2$, there are open balls $B_\epsilon(x)$, $B_\delta(x)$ contained in $U_1$ and $U_2$, resp. The smaller of these balls is contained in both open sets, so is also in the intersection. $\Box$
+
 
 An **open neighborhood** of $x$ is an open set that contains $x$. A **neighborhood** of $x$ is a set that contains an open neighborhood of $x$.
 
