@@ -124,3 +124,8 @@ For (2), we could use the previous lemma to say that $\partial S$ is the interse
 
 For (3), if $x \in \overline{S}$, then every open ball around $x$ intersects $S$. If every open ball around $x$ also intersects $X-S$, then $x \in \partial S$. Otherwise one open ball $B$ does not, so $x$ must be in $S$ (because it could not be in $X-S$. Conversely, by definition $S \subseteq \overline{S}$ and $\partial S \subseteq (\overline{S} \cap \overline{X-S}) \subseteq \overline{S}$. $\Box$
 
+The dual notion to the closure of a set is the "interior" of a set, which is the largest open set contained in the set: for a given set $S$, we define the **interior** of $S$, $\mathring{S} := \bigcup \{ U : U \subseteq S, U \text{ is open}\}$.
+
+**Lemma:** $\mathring{S} = X - \overline{X - S}$
+
+*Proof:* Some point $y$ is not in every closed superset of $X-S$, iff it's in some open subset of $S$. $\Box$
