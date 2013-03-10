@@ -100,4 +100,27 @@ Finally, $S \subseteq N$ and $N$ must be closed because if $y \in X - N$ then so
 
 *Proof:* By definition $S \subseteq \overline{S}$. If S is closed, then $\overline{S} \subseteq S$ since $\overline{S}$ is minimal. Conversely, if $\overline{S} = S$, then $\overline{S}$, being an intersection of closed sets, is closed. $\Box$
 
+The **distance** of a point $x$ from a set $S$, written $dist(x,S)$, is defined to be $inf \{ d(x,s) : s \in S\}$.
+
+**Lemma:** $\overline{S} = \{ x \in X : dist(x,S) = 0$
+
+*Proof:* A point $x$ has $dist(x, S) = 0$ iff every open ball around $x$ intersects $S$. $\Box$
+
+The **boundary** of a set $S$, notated $\partial S$, is $\{x \in X : \text{every } B_\epsilon(x) \text{ intersects both } S \text{ and } X-S\}$
+
+**Lemma:** For a set $S$, $\partial S = \overline{S} \cap \overline{X-S}$
+
+*Proof:* If $x$ is in the boundary, every epsilon ball intersects $S$ and $X-S$. So by the characterization lemma of closure, $x$ is in the closures of both $S$ and $X-S$. The converse direction works as well. $\Box$
+
+**Lemma:**
+
+ 1. $\partial S$ = $\partial X-S$
+ 2. $\partial S$ is closed
+ 3. $\overline{S} = S \cup \partial S$
+
+*Proof:* (1) holds from the definition because $X - (X - S) = S$.
+
+For (2), we could use the previous lemma to say that $\partial S$ is the intersection of two closed sets and be done with it. For fun and profit, let's use the definition. Assume that $y$ is some point for which every open ball intersects $\partial S$. So for every open ball $B$ around $y$, there's some $x \in \partial S$ in $B$. But $B$, being an open ball, is open, so there's some open ball $C$ around x that fits entirely inside $B$. Every open ball of $x$ intersects both $S$ and $X-S$, so $B$, which was an arbitrary open ball of $y$, also intersects both $S$ and $X-S$. 
+
+For (3), if $x \in \overline{S}$, then every open ball around $x$ intersects $S$. If every open ball around $x$ also intersects $X-S$, then $x \in \partial S$. Otherwise one open ball $B$ does not, so $x$ must be in $S$ (because it could not be in $X-S$. Conversely, by definition $S \subseteq \overline{S}$ and $\partial S \subseteq (\overline{S} \cap \overline{X-S}) \subseteq \overline{S}$. $\Box$
 
