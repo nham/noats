@@ -39,12 +39,12 @@ That's our $\xi$, then. Set $\xi = \epsilon - \delta$. Every point in the $\xi$-
 We can restate the above proof with more words: after traveling from $x$ to $y$, we used up some $\delta$ of distance. If we go $\epsilon - \delta$ more distance from $y$, it is possible that we will get outside of the $\epsilon$-ball. So set $\epsilon - \delta$ as the radius we must stay strictly inside. This is an open ball around $y$ that is contained in the $\epsilon$-ball around $x$. $\Box$
 
 
-An **open neighborhood* of $x$ is an open set that contains $x$. A **neighborhood** of $x$ is a set that contains an open neighborhood of $x$.
+An **open neighborhood** of $x$ is an open set that contains $x$. A **neighborhood** of $x$ is a set that contains an open neighborhood of $x$.
 
 We will use $\mathcal{N}_x$ to notate the set of all neighborhoods of a point $x$, and $\mathcal{O}_x$ to notate the set of all open neighborhoods of $x$.
 
 Above we used open neighborhoods to define neighborhoods. We could have gone in the reverse direction as well:
 
-**Lemma**: In metric space $(X, d)$, a set $U \subseteq X$ is open iff for every $y \in U$, U \in \mathcal{N}_y$
+**Lemma**: In metric space $(X, d)$, a set $U \subseteq X$ is open iff for every $y \in U$, $U \in \mathcal{N}_y$
 
 *Proof:* If $U$ is open, then it clearly holds because open balls are open sets. Conversely, if $U$ is a neighborhood of every one of its elements, then every $y \in U$ has an open set $O_y$ contained in $U$, and that $O_y$ contains an open ball of $y$. $\Box$
