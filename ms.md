@@ -20,5 +20,31 @@ An **open ball** of radius r around x is the set of all points in the metric spa
 
   $$ B_r(x_0) = \{ x : d(x, x_0) < r \}$$
 
-An **open set** is a set $U$ such that every $x \in U$ has an open ball $B_\epsilon(x)$ which is entirely contained in $U$. An **open neighborhood* of $x$ is an open set that contains $x$. A **neighborhood** of $x$ is a set that contains an open neighborhood of $x$.
+We will often call an open ball of radius $r$ an **$r$-ball**.
 
+An **open set** is a set $U$ such that every $x \in U$ has an open ball $B_\epsilon(x)$ which is entirely contained in $U$.
+
+Open balls are a kind of "primitive" open set that all other open sets are defined in terms of. We haven't yet proved that open balls are open sets, however. So let's do that.
+
+**Lemma:** Open balls are open.
+
+*Proof:* Let $B_\epsilon(x)$ be any open ball. Then $y$ is some distance $\delta \in \mathbb{R}$ from $x$ where $\delta < \epsilon$ (by definition of an open ball). We need to find some $\xi$-ball around $y$ that fits inside $B_\epsilon(x)$. 
+
+Restating this condition using the definition of open balls, we need to find some $\xi \in \mathbb{R}$ such that every $z \in B_\xi(y)$ is less than $\epsilon$ from x. So we need to ensure that $d(x, z) < \epsilon$.
+
+By the triangle inequality, $d(x, z) \leq d(x, y) + d(y, z)$. By hypothesis, $d(x,y) = \delta$, so if we could ensure that $d(y, z) < \epsilon - \delta$, we would be okay.
+
+That's our $\xi$, then. Set $\xi = \epsilon - \delta$. Every point in the $\xi$-ball will then be in our $\epsilon$-ball.
+
+We can restate the above proof with more words: after traveling from $x$ to $y$, we used up some $\delta$ of distance. If we go $\epsilon - \delta$ more distance from $y$, it is possible that we will get outside of the $\epsilon$-ball. So set $\epsilon - \delta$ as the radius we must stay strictly inside. This is an open ball around $y$ that is contained in the $\epsilon$-ball around $x$. ■
+
+
+An **open neighborhood* of $x$ is an open set that contains $x$. A **neighborhood** of $x$ is a set that contains an open neighborhood of $x$.
+
+We will use $\mathcal{N}_x$ to notate the set of all neighborhoods of a point $x$, and $\mathcal{O}_x$ to notate the set of all open neighborhoods of $x$.
+
+Above we used open neighborhoods to define neighborhoods. We could have gone in the reverse direction as well:
+
+**Lemma**: In metric space $(X, d)$, a set $U \subseteq X$ is open iff for every $y \in U$, U \in \mathcal{N}_y$
+
+*Proof:* If $U$ is open, then it clearly holds because open balls are open sets. Conversely, if $U$ is a neighborhood of every one of its elements, then every $y \in U$ has an open set $O_y$ contained in $U$, and that $O_y$ contains an open ball of $y$. ■
