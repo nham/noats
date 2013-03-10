@@ -94,4 +94,10 @@ $$
 
 If $x \in B$, then $x$ is in every closed $C$ containing $S$, because it could not possibly be in $X-C$, which is a subset of $X - S$ and is open and must therefore contain an open ball around every point (every open ball around $x$ intersects $S$). So $B \subseteq \overline{S}$.
 
-Finally, $S \subseteq N$ and $N$ must be closed because if $y \in X - N$ then some neighborhood $M$ of $y$ doesn't intersect $S$ (otherwise $y$ would be in $N$), and $M$ contains an open ball of $y$, so that open ball is entirely contained in $X - N$. Thus $X - N$ is open, and $\overline{S} \subset N$ because $\overline{S}$ is defined to be the minimal closed set containing $S$.
+Finally, $S \subseteq N$ and $N$ must be closed because if $y \in X - N$ then some neighborhood $M$ of $y$ doesn't intersect $S$ (otherwise $y$ would be in $N$), and $M$ contains an open ball of $y$, so that open ball is entirely contained in $X - N$. Thus $X - N$ is open, and $\overline{S} \subset N$ because $\overline{S}$ is defined to be the minimal closed set containing $S$. $\Box$
+
+**Lemma:** A set $S$ is closed iff $\overline{S} = S$
+
+*Proof:* By definition $S \subseteq \overline{S}$. If S is closed, then $\overline{S} \subseteq S$ since $\overline{S}$ is minimal. Conversely, if $\overline{S} = S$, then $\overline{S}$, being an intersection of closed sets, is closed. $\Box$
+
+
