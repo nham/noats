@@ -83,3 +83,27 @@ If we have a basis for our topological spaces $X$ and $Y$, can we use that to so
 Now, we must show that for every open set $F$ in the product topology on $X \times Y$, for every $x \in F$, some set $S \in \mathcal{B} \otimes \mathcal{C}$ has $x$ as an element and is contained in the set $F$. (We've already proven above that it covers the space.)
 
 All open sets $F$ are of the form $\bigcup \mathcal{F}$, where $\mathcal{F} \subseteq \mathcal{S} \otimes \mathcal{T}$. So any $x \in F$ is in at least one set $U \times V$, with $U \in \mathcal{S}$ and $V \in \mathcal{T}$. This means that $x = (a, b)$ for some $a \in U$, b \in V$, where $U$ and $V$ are both open in their respective topologies. But we know that $\mathcal{S}$ and $\mathcal{T}$ have bases (by hypothesis) $\mathcal{B}$ and $\mathcal{C}$, so there are bases sets $B_a \in X$ and $C_b \in Y$ such that $a \in B_a \subseteq \mathcal{B}$ and $b \in C_b \subseteq \mathcal{C}$. This implies that $x \in B_a \times C_b \subseteq U \times V$. $\Box$
+
+Substructures are useful in many parts of math. They will be of similar usefulness here. We will describe a way of restricting a given topological space on $X$ to some subset $Y$ of $X$.
+
+A **subspace topology** of a topological space $(X, \mathcal{T})$ is the topology defined by:
+
+$$ \{ Y \cap U : U \in \mathcal{T} \}$$
+
+for some subset $Y$ of $X$.
+
+We must prove that it is a topological space on $Y$. $Y$ and $\emptyset$ are both open ($X \cap Y = Y$). If $\mathcal{U}$ is any collection of sets open in $X$, then the let the set $S$ be the collection of intersections of $Y$ and sets from $\mathcal{U}$. Then we have:
+
+$$ \bigcup \{Y \cap U : U \in \mathcal{U} \} = Y \cap (\bigcup \mathcal{U})$$
+
+The equality holds by the distributive law. This is clearly in the subspace topology, since $X$ is a topological space, so the subspace is closed under arbitrar union. Ditto for the case of intersection. $\Box$
+
+Naturally, we should see how our new notion relates to bases.
+
+**Lemma:** If topological space $(X, \mathcal{T}$ has a basis $\mathcal{B}$, then
+
+$$\{ Y \cap B : B \in \mathcal{B}\}$$
+
+is a basis for the subspace topology on $Y$.
+
+*Proof:* Every open subset $U$ of $X$ is a $\mathcal{B}$-omnihost, so every $x \in Y \cap U$ has a $B_x \in \mathcal{B}$ such that $x \in B_x \subseteq U$. Then $x \in (Y \cap B_x) \subseteq (Y \cap U)$. Also, the set defined above covers $Y$ because $\mathcal{B}$ covers X (also uses distributivity). $\Box$
