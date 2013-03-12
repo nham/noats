@@ -66,3 +66,20 @@ That seems hard, especially since different bases may generate the same topology
 
 *Proof:* $X$ open, so by hypothesis $\mathcal{C}$ covers $X$. Also, $C_1, C_2 \in \mathcal{C}$ are open, so their intersection is open as well, meaning $C_1 \cap C_2$ is a union of basic sets. This is the same as saying that every $x$ in $C_1 \cap C_2$ has some $C_x \in \mathcal{C}$ such that $C_x \subseteq C_1 \cap C_2$.
 
+Here's another silly definition that I used to understand the product topology: Given two collections of sets $\mathcal{F}$ and $\mathcal{G}$ we define $\mathcal{F} \otimes \mathcal{G} := \{ S \times T : S \in \mathcal{F}, T \in \mathcal{G}\}$. It's the set of all cartesian products with a set in $\mathcal{F}$ first and a set in $\mathcal{G}$ second.
+
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then the **product topology** on $X \times Y$ is the topology generated from using $\mathcal{S} \otimes \mathcal{T}$ as a basis. It is a topological space on the set $X \times Y$.
+
+**Lemma:** The "product topology basis" is actually a basis for a topology on $X \times Y$.
+
+*Proof:* $X$ and $Y$ are both open in their respective topologies, so the whole set $X \times Y$ is a basis element. Also, for $U_1, U_2 \in \mathcal{S}$, $V_1, V_2 \in \mathcal{T}$, $(U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2)$, which is a product of open sets, and hence in the basis. (The intersection of basis elements being a basis element is sufficient but not necessary for the collection to be a basis). $\Box$
+
+If we have a basis for our topological spaces $X$ and $Y$, can we use that to somehow generate the product topology? If $\mathcal{B}$ and $\mathcal{C}$ are the respective bases, then $\mathcal{B} \otimes \mathcal{C} \subseteq \mathcal{S} \otimes \mathcal{T}$
+
+**Lemma:** If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topologies with bases $\mathcal{B}$ and $\mathcal{C}$, respectively, then $\mathcal{B} \otimes \mathcal{C}$ is a basis for the product topology on $X \times Y$.
+
+*Proof:* I'm going to repeat some definitions hear so that the goal here sticks in your mind. It can be easy to lose with all of these sets flying around. Given some topological space $(M, \mathcal{N})$, and given some collection $\mathcal{A}$ of subsets of $M$, we can prove that $\mathcal{A}$ is a basis for the topology $\mathcal{N}$ by showing that (1) $\mathcal{A}$ is a subset of $\mathcal{N}$, and (2) that every $E \in \mathcal{N}$ (i.e. every open set in the space) has, for every point $x$ that it contains, some set $A_x \in \mathcal{A}$ such that $x \in A_x \subseteq E$. In summary: every $\mathcal{A}$-set must be open, and every open set must be a $\mathcal{A}$-omnihost.
+
+Now, we must show that for every open set $F$ in the product topology on $X \times Y$, for every $x \in F$, some set $S \in \mathcal{B} \otimes \mathcal{C}$ has $x$ as an element and is contained in the set $F$. (We've already proven above that it covers the space.)
+
+All open sets $F$ are of the form $\bigcup \mathcal{F}$, where $\mathcal{F} \subseteq \mathcal{S} \otimes \mathcal{T}$. So any $x \in F$ is in at least one set $U \times V$, with $U \in \mathcal{S}$ and $V \in \mathcal{T}$. This means that $x = (a, b)$ for some $a \in U$, b \in V$, where $U$ and $V$ are both open in their respective topologies. But we know that $\mathcal{S}$ and $\mathcal{T}$ have bases (by hypothesis) $\mathcal{B}$ and $\mathcal{C}$, so there are bases sets $B_a \in X$ and $C_b \in Y$ such that $a \in B_a \subseteq \mathcal{B}$ and $b \in C_b \subseteq \mathcal{C}$. This implies that $x \in B_a \times C_b \subseteq U \times V$. $\Box$
