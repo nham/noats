@@ -136,3 +136,15 @@ $$
 $$
 
 This URM also computes $f$, though it is much more complicated (and less efficient!) than our previous machine. It is easy enough to verify (at least through an example) that the machine works in case the input is even. But does the machine not terminate if the input is odd? If you trace the execution, eventually the machine's state becomes $(0, 3, 0, 0, \ldots)$. At that point it jumps back to the first instruction, the check fails, so it goes to the second line to subtract one from the first register, which in this case is 0. The subtraction sub-process here fails to terminate, for the same reason that the standalone subtraction machine failed to terminate for inputs of 0.
+
+## Decidability
+
+One of our concerns will be finding out whether we can determine computationally if some given candidate is a member of some set. Since our model of computation is URMs, which deal only with functions of numbers, we will be trying to determine if some given number is a member of some distinguished set of natural numbers. It is interesting and easy enough to generalize this to n-tuples of natural numbers, so that we will be interested in computing membership in some n-ary predicate.
+
+Given some $n$-ary predicate $M$, we define a characteristic function $c_M: \mathbb{N}^n \rightarrow \mathbb{N}$ by:
+
+$$ c_M(\overline{x}) := \cases{
+    1 & \text{if } \overline{x} \in M \cr
+    0 & \text{otherwise}}$$
+
+The predicate $M$ is **decidable** if $c_M$ is computable.
