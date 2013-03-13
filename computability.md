@@ -158,3 +158,13 @@ $$[J\ 1\ 2\ 7]; [J\ 1\ 3\ 8]; [S\ 2]; [S\ 2]; [S\ 3]; [J\ 1\ 1\ 1]; [S\ 4]; [T\ 
 We use two counters. The first counter we repeatedly add two to, the second just gets increments by one. Using the first counter we check whether the input is a multiple of two. If so, we return 1. The second counter in fact checks every number, not just odd numbers. However, the first counter checks each even number before the second counter checks it, so the second counter will never find a multiple of two (since the first counter would have found it first). So if the second counter matches the input must be odd, and thus the machine returns 0.
 
 It is straightforward to modify this so the second counter only checks odds.
+
+## Combining machines
+
+Can we compose URMs? That is, can we take the instructions of two URMs and put one sequence right after the other, combining them into a single URM? We can, but we shall have to avoid some potential issues.
+
+Let's call the number of instructions of an URM $M$ the **length** $M$. The way that an URM terminates is when its instruction counter exceeds the length. This can happen normally after it executes the last instruction, but it also might happen when a jump instruction jumps to some instruction index greater than the length. This is a problem for composing URMs, because depending on which index a jump in the first machine $M_1$ specifies, we could jump to the first instruction in the second machine, $M_2$, or some instruction in the middle. We want to stipulate that whenever $M_1$ terminates via jumping, that we always start with the first instruction of $M_2$.
+
+So if $M$ is any URM of length $k$, we will want to ensure that the jump index is, at most, $k+1$ (so that we're either jumping to some instruction in $M$, or we jump just past the last instruction). If $M$ satisfies this requirement, then we shall say that $M$ is in **standard form**.
+
+It is an easy task to put a machine into standard form: take any non-standard jump instructions and change them!
