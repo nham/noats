@@ -130,6 +130,9 @@ The dual notion to the closure of a set is the "interior" of a set, which is the
 
 *Proof:* Some point $y$ is not in every closed superset of $X-S$, iff it's in some open subset of $S$. $\Box$
 
+A function $f: X \rightarrow Y$ is **continuous at $x$** if for every $\epsilon$-ball around $f(x)$ there is a $\delta$-ball around $x$ that $f$ maps inside the $\epsilon$-ball. In symbols: $\forall \epsilon > 0 \exists \delta > 0 f(B_\delta(x)) \subseteq B_\epsilon(f(x))$.
+
+We can interpret the above definition this way: $f$ allows us to ensure that we can keep the output of $f$ arbitrarily close to $f(x)$ by restricting the input to some range of points sufficiently close to $x$. More briefly: points that are close enough to $x$ get mapped to points close to $f(x)$.
 
 
 
