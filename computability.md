@@ -148,3 +148,13 @@ $$ c_M(\overline{x}) := \cases{
     0 & \text{otherwise}}$$
 
 The predicate $M$ is **decidable** if $c_M$ is computable.
+
+### Example
+
+The set of even numbers is decidable, with this URM:
+
+$$[J\ 1\ 2\ 7]; [J\ 1\ 3\ 8]; [S\ 2]; [S\ 2]; [S\ 3]; [J\ 1\ 1\ 1]; [S\ 4]; [T\ 4\ 1]$$
+
+We use two counters. The first counter we repeatedly add two to, the second just gets increments by one. Using the first counter we check whether the input is a multiple of two. If so, we return 1. The second counter in fact checks every number, not just odd numbers. However, the first counter checks each even number before the second counter checks it, so the second counter will never find a multiple of two (since the first counter would have found it first). So if the second counter matches the input must be odd, and thus the machine returns 0.
+
+It is straightforward to modify this so the second counter only checks odds.
