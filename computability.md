@@ -66,6 +66,8 @@ We need to clean up some loose/ambiguous language here. I've been talking about 
 
 However, as we saw above, we have instances where "different machines" behave basically identically. This sounds like a job for an equivalence relation! The equivalence classes will be the set of all machines with the same tuple of instructions. Then each class of URMs differs only by the initial configuration. We  might call each equivalence class a "dynamic URM", but it actually be more useful to consider this more general notion to be the "real" definition of an URM. So let's rename our original definition to something like "static URM", and then say an URM is an equivalence class of static URMs with the same instruction tuple.
 
+So our new definition: an **unlimited register machine** is just some $k$-tuple of instructions.
+
 It now makes sense to talk about an "input" to an URM: an **input** of an URM is a state of the machine. Given an input, we can select the static URM in the equivalence class with an initial state the same as the input state and start running that static machine.
 
 Which brings us to our second point, which we touched on above: for any given input, the machine might not terminate. In our first example, the machine didn't terminate for *any* input. If we have in mind the idea of representing functions by a machine, it seems that some inputs will have no outputs.
