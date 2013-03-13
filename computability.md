@@ -3,6 +3,11 @@
 ## Basic notions
 Let $[n] = \{1, \ldots, n\}$. $\mathbb{P}$ is the positive integers, while $\mathbb{N}$ is the nonnegative integers (also referred to as the natural numbers).
 
+A n-ary *predicate* on a set $A$ is some subset of $A^n$. Note that the 0-ary predicate on any set is just some singleton set. We might as well define it as $A^0 := \{\emptyset\}$ (the set consisting of one element, the empty set.)
+
+
+## Unlimited register machines
+
 An **unlimited register machine (URM)** is
 
  - an *initial register state* $\text{init}: \mathbb{P} \rightarrow \mathbb{N}$
