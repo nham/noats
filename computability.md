@@ -175,6 +175,8 @@ For two URMS $M = (A_1, \ldots, A_j)$ and $N = (B_1, \ldots, B_k)$, of length $j
 
 The **working space** of an urm $M$ is the largest "register parameter" (parameter for an instruction that isn't the third parameter in a jump instruction) appearing in $M$. For example,$[S\ 2];[Z\ 5]$ has a working space of 5. Adding an instruction to make it $[S\ 2];[Z\ 5];[J 9 5 4]$ increases to working space to 9 (since our program now checks the value of register 9 at some point). If we change it to $[S\ 2];[Z\ 5];[J\ 9\ 5\ 200]$, the working space is still 9, since "200" refers to an intruction, not a register.
 
+## Composition, example 1
+
 If machine $M$ computes function $f:\mathbb{N} \rightarrow \mathbb{N}$ and machine $N$ computes function $g:\mathbb{N} \rightarrow \mathbb{N}$, can we find a machine that computes $g \circ f$? If we just do $M+N$ (we have to reverse because the notation for function composition is backwards, remember), then we don't necessarily have a solution. Imagine we want to compute this function:
 
 $$ h(x) := \cases{
@@ -191,3 +193,36 @@ The problem is that we didn't clean up the working space after $M$ was done befo
  - Make the components of $M$ and $N$ within $M+N$ use disjoint working spaces by, say, shifting $N$'s registers. We  will just need to copy the output of $M$ to the input register of $N$.
 
 The second option seems less convenient because we have to modify the instructions of our second machine whenever we try to compose functions. So we will use the first option.
+
+## Composition, example 2
+
+We will extend composition to a case with higher arities. Let's (build a machine that will) compute:
+
+$$ h(x) := 3x+1$$
+
+We will build this out of the composition of three functions: $g(x,y) = x + y$, $f_1(x) = 2x$, and $f_2(x) = x + 1$.
+
+The corresponding URMs are defined by:
+
+$$G = [J\ 2\ 3\ 5]; [S\ 1]; [S\ 3]; [J\ 1\ 1\ 1]$$
+
+$$F_1 = [J\ 1\ 3\ 5]; [S\ 2]; [S\ 3]; [S\ 3]; [J\ 1\ 1\ 1]; [T\ 2\ 1]$$
+
+$$F_2 = [S\ 1]$$
+
+Now we are composing two unary functions with a binary function, so we will need to amend our strategy for computing compositions. Now the input needs to be given to two different processes, so we must store it somewhere before using it. Also, after obtaining the output from $F_1$, we need to get the output of $F_2$, so we will need a place to store the intermediate output from $F_1$ while we compute $F_2's output$. As before, we  need to take care of working space cleanup so one process doesn't clobber another, or overwrite any of the memory stores (for the input and the outputs of $F_1$ and $F_2$).
+
+Technically we don't care whether $G$ clobbers any of the stores, since by the time $G$ starts running we no longer have any use for them. But we do care that the working space of $G$ is properly initialized. So letting $N$ be the maximum length among the machines, we reserve the first $N$ registers on the tape to be the global *working space* of the composite machine. Register $N+1$ will be reserved for the input, which we will need to transfer immediately. We also need two stores, one for the output of each $F_i$. The process should run like this:
+
+ 1. Transfer the input to register $N+1$.
+ 2. Run $F_1$.
+ 3. Transfer the output to register $N+2$
+ 4. Transfer $N+1$ to $1$.
+ 5. Zero out registers 2 through $N$.
+ 6. Run $F_2$ 
+ 7. Transfer the output to register $N+3$
+ 8. Transfer $N+2$, $N+3$ to 1, 2.
+ 9. Zero out registers 3 through $N$.
+ 10. Run $G$.
+
+The description above suggests a couple generalizations. We might allow $f_1, f_2$ to be $n$-ary functions for any $n$. The change here is to allot more registers for storing the initial input. We might also allow any number $k$ of functions $f_i$.
