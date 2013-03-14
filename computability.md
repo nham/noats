@@ -226,3 +226,25 @@ Technically we don't care whether $G$ clobbers any of the stores, since by the t
  10. Run $G$.
 
 The description above suggests a couple generalizations. We might allow $f_1, f_2$ to be $n$-ary functions for any $n$. The change here is to allot more registers for storing the initial input. We might also allow any number $k$ of functions $f_i$.
+
+## Substitution
+
+Suppose $F$ is a machine that computes some $k$-ary function $f: \mathbb{N}^k \rightarrow \mathbb{N}$, and suppose $G_1$ through $G_k$ are machines that compute, respectively, $n$-ary functions $g_i: \mathbb{N}^n \rightarrow \mathbb{N}$ for $i \in [k]$. To build a machine that computes the function defined by
+
+$$ h(\overline{x}) = $$
+$$ h(\overlne{x}) := \cases{
+    f(g_1(\overline{x}), \ldots, g_k(\overline{x})) & \text{if each} g_i(\overline{x}) \text{ is defined and } f \text{ is defined} \cr
+    \text{undefined} & \text{otherwise}}$$
+
+for all $x \in \mathbb{N}^n$, we do the following:
+
+ - Define $N := \text{max}\{n,k,length(G_1),\ldots,length(G_k),length(F)\}$
+ - Define $[Copy\ i\ j\ k] := [T\ i\ i+k]; \ldots [T\ j\ j+k]$, which is a machine that transfers the values of registers $i$ through $j$ to the registers $i+k$ through $j+k$. For example, $[Copy\ 1\ n\ N]$ copies the contents of the first $n$ registers to the $n$ consecutve registers starting at $N+1$ (hint hint).
+ - Define $[Zero\ i\ j] := [Z\ i]; \ldots [Z\ j]$. It zeroes out registers $i$ through $j$.
+
+$$(Copy\ 1\ n\ N); (G_1); [T\ 1\ N+n+1]; 
+(Copy\ N+1\ N+n\ 1); (Zero\ n+1\ N); (G_2); [T\ 1\ N+n+2];
+\cdots
+(Copy\ N+1\ N+n\ 1); (Zero\ n+1\ N); (G_k); [T\ 1\ N+n+k];
+(Copy\ N+n+1\ N+n+k\ 1); (Zero\ k+1\ N); (F) 
+$$
