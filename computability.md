@@ -171,6 +171,8 @@ So if $M$ is any URM of length $k$, we will want to ensure that the jump index i
 
 It is an easy task to put a machine into standard form: take any non-standard jump instructions and change them!
 
-For two URMS $M = (A_1, \ldots, A_j)$ and $N = (B_1, \ldots, B_k)$, of length $j$ and $k$, respectively the **concatenation** $M+N$ of the machines is the machine $(A_1, \ldots, A_j, B_1, \ldots, B_k)$, where each jump instruction $[J\ m\ n\ s]$ in the $N$ is transformed into $[J\ m\ n\ s+j]$ in $M+N$. (This condition is necessary to ensure that jump instructions in $N$ work properly).
+For two URMS $M = (A_1, \ldots, A_j)$ and $N = (B_1, \ldots, B_k)$, of length $j$ and $k$, respectively the **concatenation** $M+N$ of the machines is the machine $(A_1, \ldots, A_j, B_1, \ldots, B_k)$, where each jump instruction $[J\ m\ n\ s]$ in $N$ is transformed into $[J\ m\ n\ s+j]$ in $M+N$. (This condition is necessary to ensure that jump instructions in $N$ work properly).
 
-The **working space** of an urm $M$ is the largest "register parameter" (parameter for an instruction that isn't the third parameter in a jump instruction) appearing in $M$. For example,$[S\ 2];[Z\ 5]$ has a working space of 5. Adding an instruction to make it $[S\ 2];[Z\ 5];[J 9 5 4]$ increases to working space to 9 (since our program now checks the value of register 9 at some point). If we change is to $[S\ 2];[Z\ 5];[J\ 9\ 5\ 200]$, the working space is still 9, since "200" refers to a register.
+The **working space** of an urm $M$ is the largest "register parameter" (parameter for an instruction that isn't the third parameter in a jump instruction) appearing in $M$. For example,$[S\ 2];[Z\ 5]$ has a working space of 5. Adding an instruction to make it $[S\ 2];[Z\ 5];[J 9 5 4]$ increases to working space to 9 (since our program now checks the value of register 9 at some point). If we change it to $[S\ 2];[Z\ 5];[J\ 9\ 5\ 200]$, the working space is still 9, since "200" refers to an intruction, not a register.
+
+
