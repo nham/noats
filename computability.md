@@ -175,4 +175,19 @@ For two URMS $M = (A_1, \ldots, A_j)$ and $N = (B_1, \ldots, B_k)$, of length $j
 
 The **working space** of an urm $M$ is the largest "register parameter" (parameter for an instruction that isn't the third parameter in a jump instruction) appearing in $M$. For example,$[S\ 2];[Z\ 5]$ has a working space of 5. Adding an instruction to make it $[S\ 2];[Z\ 5];[J 9 5 4]$ increases to working space to 9 (since our program now checks the value of register 9 at some point). If we change it to $[S\ 2];[Z\ 5];[J\ 9\ 5\ 200]$, the working space is still 9, since "200" refers to an intruction, not a register.
 
+If machine $M$ computes function $f:\mathbb{N} \rightarrow \mathbb{N}$ and machine $N$ computes function $g:\mathbb{N} \rightarrow \mathbb{N}$, can we find a machine that computes $g \circ f$? If we just do $M+N$ (we have to reverse because the notation for function composition is backwards, remember), then we don't necessarily have a solution. Imagine we want to compute this function:
 
+$$ h(x) := \cases{
+    \frac{x-1}{2} & \text{if } x \text{ is odd} \cr
+    \text{undefined} & \text{otherwise}}$$
+
+Let $M = [S\ 3]; [J\ 1\ 3\ 6]; [S\ 2]; [S\ 3]; [J\ 1\ 1\ 2]; [T\ 2\ 1]$, which decrements the input by 1 if the input is not zero. Call this function $f$. Also, let $N = [J\ 1\ 3\ 5]; [S\ 2]; [S\ 3]; [S\ 3]; [J\ 1\ 1\ 1]; [T\ 2\ 1]$, which is the first program from our first example. It divides any even number in half and doesn't terminate for odd inputs. Call this function $g$. It should be easy to see that $h = g \circ f$
+
+$M+N$ is a natural candidate to implementing $h$, but it doesn't work here. After running $M$ on an input of, say, $5$, we have a register state of $(4, 4, 5)$. Now $N$ starts blindly using registers 2 and 3, assuming that they are zero, when they are in fact not. $N$ will never terminate now.
+
+The problem is that we didn't clean up the working space after $M$ was done before $N$ tried to use it. We have two possible solutions, and it doesn't seem to matter much which one we use:
+
+ - clean up the working space of $N$ (save the output) before transitioning to $N$.
+ - Make the components of $M$ and $N$ within $M+N$ use disjoint working spaces by, say, shifting $N$'s registers. We  will just need to copy the output of $M$ to the input register of $N$.
+
+The second option seems less convenient because we have to modify the instructions of our second machine whenever we try to compose functions. So we will use the first option.
