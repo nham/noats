@@ -13,4 +13,4 @@ If $A \subseteq B$ and $X$ intersects $A$, then $X$ intersects $B$. Kind of obvi
 
 ---
 
-If f( f^pre( S ) ) = S, but f^pre( f ( S ) ) is a strict superset of S unless f is injective. (There's actually a weaker condition that works: we just need S to be the only points that map into f(S)). The LHS of the first is the image of all the points that map into S, which is obviously still S. The LHS of the second is the set of all points that map into the same points that S maps into, which could be more than just S.
+$f(f^{pre}(S) ) = S$, but $f^pre(f(S))$ could be a strict superset of $S$. One way to get equality is if $f$ is injective, but there's actually a weaker condition that works: we just need $S$ to be the only points that map into $f(S)$ (i.e. the restriction of $f$ to $S$ must be injective). The LHS of the first is the image of all the points that map into S, which is obviously still S. The LHS of the second is the set of all points that map into the same points that S maps into, which could be more than just S.
