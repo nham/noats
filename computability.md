@@ -239,12 +239,18 @@ $$ h(\overlne{x}) := \cases{
 for all $x \in \mathbb{N}^n$, we do the following:
 
  - Define $N := \text{max}\{n,k,length(G_1),\ldots,length(G_k),length(F)\}$
- - Define $[Copy\ i\ j\ k] := [T\ i\ i+k]; \ldots [T\ j\ j+k]$, which is a machine that transfers the values of registers $i$ through $j$ to the registers $i+k$ through $j+k$. For example, $[Copy\ 1\ n\ N]$ copies the contents of the first $n$ registers to the $n$ consecutve registers starting at $N+1$ (hint hint).
- - Define $[Zero\ i\ j] := [Z\ i]; \ldots [Z\ j]$. It zeroes out registers $i$ through $j$.
+ - Define $(Copy\ i\ j\ k) := [T\ i\ i+k]; \ldots [T\ j\ j+k]$, which is a machine that transfers the values of registers $i$ through $j$ to the registers $i+k$ through $j+k$. For example, $(Copy\ 1\ n\ N)$ copies the contents of the first $n$ registers to the $n$ consecutive registers starting at $N+1$ (hint hint).
+ - Define $(Zero\ i\ j) := [Z\ i]; \ldots [Z\ j]$. It zeroes out registers $i$ through $j$.
+ - Define $(M)$ to be the sequence of instructions from a machine $M$.
 
-$$(Copy\ 1\ n\ N); (G_1); [T\ 1\ N+n+1]; 
-(Copy\ N+1\ N+n\ 1); (Zero\ n+1\ N); (G_2); [T\ 1\ N+n+2];
-\cdots
-(Copy\ N+1\ N+n\ 1); (Zero\ n+1\ N); (G_k); [T\ 1\ N+n+k];
-(Copy\ N+n+1\ N+n+k\ 1); (Zero\ k+1\ N); (F) 
+Then $h$ is computed by the following machine:
+
+$$
+\begin{split}
+(Copy\ 1\ n\ N); (G_1); [T\ 1\ N+n+1];\\
+(Copy\ N+1\ N+n\ 1); (Zero\ n+1\ N); (G_2); [T\ 1\ N+n+2];\\
+\cdots\\
+(Copy\ N+1\ N+n\ 1); (Zero\ n+1\ N); (G_k); [T\ 1\ N+n+k];\\
+(Copy\ N+n+1\ N+n+k\ 1); (Zero\ k+1\ N); (F)
+\end{split}
 $$
