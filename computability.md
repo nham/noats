@@ -253,3 +253,14 @@ $$
 (Copy\ N+n+1\ N+n+k\ 1); (Zero\ k+1\ N); (F)
 \end{split}
 $$
+
+## Recursion
+
+We have just proved that the class of computable functions is closed under substitution. There is another operation that computable functions are closed under: primitive recursion.
+
+**Primitive Recursion Theorem:** If $f:\mathbb{N}^k \rightarrow \mathbb{N}$ and $g:\mathbb{N}^{k+2} \rightarrow \mathbb{N}$ are both computable, then $h:\mathbb{N}^{k+1} \rightarrow \mathbb{N}$ defined by:
+
+$$ h(\overline{x}, 0) := f(\overline{x}) $$
+$$ h(\overline{x}, y+1) := g(\overline{x}, y, h(\overline{x}, y))$$
+
+is also computable.
