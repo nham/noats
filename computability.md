@@ -210,7 +210,7 @@ $$F_1 = [J\ 1\ 3\ 5]; [S\ 2]; [S\ 3]; [S\ 3]; [J\ 1\ 1\ 1]; [T\ 2\ 1]$$
 
 $$F_2 = [S\ 1]$$
 
-Now we are composing two unary functions with a binary function, so we will need to amend our strategy for computing compositions. Now the input needs to be given to two different processes, so we must store it somewhere before using it. Also, after obtaining the output from $F_1$, we need to get the output of $F_2$, so we will need a place to store the intermediate output from $F_1$ while we compute $F_2's output$. As before, we  need to take care of working space cleanup so one process doesn't clobber another, or overwrite any of the memory stores (for the input and the outputs of $F_1$ and $F_2$).
+Now we are composing two unary functions with a binary function, so we will need to amend our strategy for computing compositions. Now the input needs to be given to two different processes, so we must store it somewhere before using it. Also, after obtaining the output from $F_1$, we need to get the output of $F_2$, so we will need a place to store the intermediate output from $F_1$ while we compute $F_2$'s output. As before, we  need to take care of working space cleanup so one process doesn't clobber another, or overwrite any of the memory stores (for the input and the outputs of $F_1$ and $F_2$).
 
 Technically we don't care whether $G$ clobbers any of the stores, since by the time $G$ starts running we no longer have any use for them. But we do care that the working space of $G$ is properly initialized. So letting $N$ be the maximum length among the machines, we reserve the first $N$ registers on the tape to be the global *working space* of the composite machine. Register $N+1$ will be reserved for the input, which we will need to transfer immediately. We also need two stores, one for the output of each $F_i$. The process should run like this:
 
@@ -231,9 +231,8 @@ The description above suggests a couple generalizations. We might allow $f_1, f_
 
 Suppose $F$ is a machine that computes some $k$-ary function $f: \mathbb{N}^k \rightarrow \mathbb{N}$, and suppose $G_1$ through $G_k$ are machines that compute, respectively, $n$-ary functions $g_i: \mathbb{N}^n \rightarrow \mathbb{N}$ for $i \in [k]$. To build a machine that computes the function defined by
 
-$$ h(\overline{x}) = $$
-$$ h(\overlne{x}) := \cases{
-    f(g_1(\overline{x}), \ldots, g_k(\overline{x})) & \text{if each} g_i(\overline{x}) \text{ is defined and } f \text{ is defined} \cr
+$$ h(\overline{x}) := \cases{
+    f(g_1(\overline{x}), \ldots, g_k(\overline{x})) & \text{if each } g_i(\overline{x}) \text{ is defined and } f \text{ is defined} \cr
     \text{undefined} & \text{otherwise}}$$
 
 for all $x \in \mathbb{N}^n$, we do the following:
