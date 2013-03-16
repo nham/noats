@@ -15,11 +15,11 @@ If $A \subseteq B$ and $X$ intersects $A$, then $X$ intersects $B$. Kind of obvi
 
 ---
 
-$f(f^{pre}(S) ) = S$, but $f^pre(f(S))$ could be a strict superset of $S$. One way to get equality is if $f$ is injective, but there's actually a weaker condition that works: we just need $S$ to be the only points that map into $f(S)$ (i.e. the restriction of $f$ to $S$ must be injective). The LHS of the first is the image of all the points that map into S, which is obviously still S. The LHS of the second is the set of all points that map into the same points that S maps into, which could be more than just S.
+$f(f^{pre}(S) ) = S$, but $f^{pre}(f(S))$ could be a strict superset of $S$. One way to get equality is if $f$ is injective, but there's actually a weaker condition that works: we just need $S$ to be the only points that map into $f(S)$ (i.e. the restriction of $f$ to $S$ must be injective). The LHS of the first is the image of all the points that map into S, which is obviously still S. The LHS of the second is the set of all points that map into the same points that S maps into, which could be more than just S.
 
 ---
 
-If $f: X \rightarrow Y$ is a function, $S \subseteq X$ and $\mathcal{U}$ is a collection of subsets in $Y$ that covers $f(S)$, then let $\mathcal{P} := \{f^{pre}(A) : A \in \mathcal{U}\}$ ($\mathcal{P}$ is the collection of preimages of sets in $\mathcal{U}$. Then we have the following true:
+If $f: X \rightarrow Y$ is a function, $S \subseteq X$ and $\mathcal{U}$ is a collection of subsets in $Y$, then let $\mathcal{P} := \{f^{pre}(A) : A \in \mathcal{U}\}$ ($\mathcal{P}$ is the collection of preimages of sets in $\mathcal{U}$.) Then we have the following true:
 
 If $\mathcal{U}$ covers $f(S)$, then $\mathcal{P}$ covers $S$. *Proof:* for $x \in S$, $f(x) \in f(S)$, so it's in one $A_x \in \mathcal{U}$, and hence $f^{pre}(A_x)$ is in $\mathcal{P}$. $x$ is in $f^{pre}(A_x)$ for obvious reasons.
 
