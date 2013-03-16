@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>notes on assorted things - </title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+    q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+      <meta name="viewport" content="width=device-width">
+      <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="container">
+<h1 id="notes-on-point-set-topology">Notes on point-set topology</h1>
+<p>It is useful, for various purposes, to generalize <a href="ms.html">metric spaces</a>. But how to discuss continuity with no notion of distance? We use the equivalent characterization of continuous functions, which are functions for which open sets in the target space have open pre-images. We can do this by axiomatizing an abstract space that behaves like the open sets in a metric space do.</p>
+<p>A <strong>topological space</strong> is a pair \((X, \mathcal{T})\) where \(X\) is some set and \(\mathcal{T}\) is a subset of the powerset \(\mathcal{P}(X)\) which obeys the following:</p>
+<ol type="1">
+<li>\(\emptyset\), \(X\) are in $</li>
+<li>For any \(\mathcal{U} \subseteq \mathcal{T}\), \(\bigcup \mathcal{U} \in \mathcal{T}\)</li>
+<li>For any \(U_1, U_2 \in \mathcal{T}\), \(U_1 \cap U_2 \in mathcal{T}\)</li>
+</ol>
+<p>We are in need of an analog of open balls for general topological spaces so we can describe building up topological spaces from certain <em>basic</em> open sets. First I introduce some silly definition that helped me wrap my head around bases.</p>
+<p>Given any subcollection \(\mathcal{C}\) of \(\mathcal{P}(X)\) and a point \(x \in X\), we define a <strong>\(\mathcal{C}\)-host</strong> of \(x\) to be a set \(S\) such that there is some \(C \in mathcal{C}\) for which \(x \in C \subseteq S\). We call the set \(\mathcal{C}\) the basic elements.</p>
+<p>For example, in metric space \((X, d)\), if we let \(\mathcal{O}\) be the set of all open sets, then a <em>neighborhood</em> of \(x\) is a \(\mathcal{O}\)-host of \(x\). If we let \(\mathcal{B}\) be the set of all open balls, then the open sets are defined to be the sets that are \(\mathcal{B}\)-hosts for every element they contain.</p>
+<p>Let’s make two last silly definitions: a <strong>\(\mathcal{C}\)-omnihost</strong> is a set \(S\) that is a \(\mathcal{C}\)-host$ of \(x\) for all \(x \in S\). And we will define \(\Theta(\mathcal{C}\) to be the set of all \(\mathcal{C}\)-omnihosts in a set \(X\) (call it the <em>omnifamily</em> of \(\mathcal{C}\), or something).</p>
+<p>All the sets in \(\mathcal{C}\) are omnihosts (i.e. they are in \(\Theta(\mathcal{C})\)). The union of arbitrary subcollections of \(\mathcal{C}\) are also \(\mathcal{C}\)-omnihosts (every point in the union has to be in some omnihost, since that’s how they got in the union). The empty set is vacuously a \(\mathcal{C}\)-omnihost.</p>
+<p><strong>Lemma:</strong> A set is in \(\Theta(\mathcal{C})\) iff it is the union of some subcollection of \(\mathcal{C}\).</p>
+<p><em>Proof:</em> In the last paragraph we established that arbitrary unions are omnihosts. We just need prove the converse. But this is immediate, since if every point \(x\) in a set has some set \(C_x \in \mathcal{C}\) that’s contained in the set, we can union all these \(C_x\)’s to get the original set. \(\Box\)</p>
+<p><strong>Lemma:</strong> The set of \(\mathcal{C}\)-omnihosts is closed under arbitrary union.</p>
+<p><em>Proof:</em> By the previous lemma, each omnihost is a union of sets in \(\mathcal{C}\), so the union of any number of omnihosts is just a union of sets in \(\mathcal{C}\). \(\Box\)</p>
+<p>What additional constraints do we need to impose on the basis set \(\mathcal{C}\) so that the set of all \(\mathcal{C}\)-omnihosts forms a topology? We already have that the empty set is an omnihost, and that arbitrary union of omnihosts is an omnihost. So we need to ensure two more things:</p>
+<ol type="1">
+<li>\(X\) is an omnihost</li>
+<li>The intersection of two omnihosts is an omnihost.</li>
+</ol>
+<p><strong>Lemma:</strong> If \(\mathcal{C}\) is a collection of subsets of \(X\), then the omnifamily of \(\mathcal{C}\) contains \(X\) iff \(\bigcup \mathcal{C} = X\).</p>
+<p><em>Proof:</em> Clearly if \(\mathcal{C}\) covers \(X\) then \(X\) is an omnihost. Conversely, if they don’t cover \(X\), then \(X\) could not be an omnihost, because the omnihosts are built up by unioning collections of sets in \(\mathcal{C}\). (The missing elements belong to no omnihost). \(\Box\)</p>
+<p>And for the cherry on top:</p>
+<p><strong>Lemma:</strong> The intersection of two \(\mathcal{C}\)-omnihosts \(S_1\) and \(S_2\) is an omnihost iff for any \(C_1, C_2 \in \mathcal{C}\), \(C_1 \cap C_2\) is an omnihost.</p>
+<p><em>Proof:</em> If the intersection of two sets in \(\mathcal{C}\) is an omnihost, then for any two omnihosts \(S_1, S_2\), if \(x \in S_1 \cap S_2\) then there’s some \(U, V \in \mathcal{C}\) with \(x \in U \subseteq S_1\) and \(x \in V \subseteq S_2\). \(U\) and \(V\), being subsets in \(\mathcal{C}\), have an intersection that is an omnihost. So in particular there’s some \(W \in \mathcal{C}\) such that \(x \in W \subseteq U \cap V\). This set \(W\) is also a subset of \(S_1 \cap S_2\), so \(S_1 \cap S_2\) is an omnihost.</p>
+<p>Conversely, all sets in \(\mathcal{C}\) are omnihosts, so if the intersection of any two omnihosts is an omnihost, then the intersection of any two subsets of \(\mathcal{C}\) is also an omnihost. \(\Box\)</p>
+<p>The above leads us to this definition:</p>
+<p>A <strong>basis</strong> for a topology on \(X\) is a collection of subsets \(\mathcal{B}\) of \(X\) such that:</p>
+<ol type="1">
+<li>\(\bigcup \mathcal{B} = X\)</li>
+<li>For any \(B_1, B_2 \in \mathcal{B}\), for every \(x \in B_1 \cap B_2\) there’s a \(B_3 \in \mathcal{B}\) such that \(x \in B_3 \subseteq B_1 \cap B_2\).</li>
+</ol>
+<p>We can restate (2) as: the intersection of any two basis elements is a \(\mathcal{B}\)-omnihost.</p>
+<p>The <strong>topology generated by basis \(\mathcal{B}\)</strong> is defined as the collection of all sets that are \(\mathcal{B}\)-omnihosts.</p>
+<p>Since a basis and its generated topology are an omnihost system, the lemma that a set is an omnihost iff it is the union of basic elements holds here. Translated into more familiar terms, we have:</p>
+<p><strong>Lemma:</strong> In a topological space generated by a basis, a set is open iff it is the union of basis elements.</p>
+<p>Bases give us a way to build up a topological space out of primitive elements. Can we go the other way, finding a basis that generates some given topology?</p>
+<p>That seems hard, especially since different bases may generate the same topology. But we should at least be able to find the properties that would suffice to prove that a given candidate collection \(\mathcal{C}\) is, in fact, a basis for our topology.</p>
+<p><strong>Lemma:</strong> Given a topological space \((X, \mathcal{T})\), some subcollection \(\mathcal{C}\) of \(\mathcal{T}\) is a basis that generates \(\mathcal{T}\) if every \(U \in \mathcal{T}\) is a union of sets in \(\mathcal{C}\).</p>
+<p><em>Proof:</em> \(X\) open, so by hypothesis \(\mathcal{C}\) covers \(X\). Also, \(C_1, C_2 \in \mathcal{C}\) are open, so their intersection is open as well, meaning \(C_1 \cap C_2\) is a union of basic sets. This is the same as saying that every \(x\) in \(C_1 \cap C_2\) has some \(C_x \in \mathcal{C}\) such that \(C_x \subseteq C_1 \cap C_2\).</p>
+<p>Here’s another silly definition that I used to understand the product topology: Given two collections of sets \(\mathcal{F}\) and \(\mathcal{G}\) we define \(\mathcal{F} \otimes \mathcal{G} := \{ S \times T : S \in \mathcal{F}, T \in \mathcal{G}\}\). It’s the set of all cartesian products with a set in \(\mathcal{F}\) first and a set in \(\mathcal{G}\) second.</p>
+<p>If \((X, \mathcal{S})\) and \((Y, \mathcal{T})\) are topological spaces, then the <strong>product topology</strong> on \(X \times Y\) is the topology generated from using \(\mathcal{S} \otimes \mathcal{T}\) as a basis. It is a topological space on the set \(X \times Y\).</p>
+<p><strong>Lemma:</strong> The <q>product topology basis</q> is actually a basis for a topology on \(X \times Y\).</p>
+<p><em>Proof:</em> \(X\) and \(Y\) are both open in their respective topologies, so the whole set \(X \times Y\) is a basis element. Also, for \(U_1, U_2 \in \mathcal{S}\), \(V_1, V_2 \in \mathcal{T}\), \((U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2)\), which is a product of open sets, and hence in the basis. (The intersection of basis elements being a basis element is sufficient but not necessary for the collection to be a basis). \(\Box\)</p>
+<p>If we have a basis for our topological spaces \(X\) and \(Y\), can we use that to somehow generate the product topology? If \(\mathcal{B}\) and \(\mathcal{C}\) are the respective bases, then \(\mathcal{B} \otimes \mathcal{C} \subseteq \mathcal{S} \otimes \mathcal{T}\)</p>
+<p><strong>Lemma:</strong> If \((X, \mathcal{S})\) and \((Y, \mathcal{T})\) are topologies with bases \(\mathcal{B}\) and \(\mathcal{C}\), respectively, then \(\mathcal{B} \otimes \mathcal{C}\) is a basis for the product topology on \(X \times Y\).</p>
+<p><em>Proof:</em> I’m going to repeat some definitions hear so that the goal here sticks in your mind. It can be easy to lose with all of these sets flying around. Given some topological space \((M, \mathcal{N})\), and given some collection \(\mathcal{A}\) of subsets of \(M\), we can prove that \(\mathcal{A}\) is a basis for the topology \(\mathcal{N}\) by showing that (1) \(\mathcal{A}\) is a subset of \(\mathcal{N}\), and (2) that every \(E \in \mathcal{N}\) (i.e. every open set in the space) has, for every point \(x\) that it contains, some set \(A_x \in \mathcal{A}\) such that \(x \in A_x \subseteq E\). In summary: every \(\mathcal{A}\)-set must be open, and every open set must be a \(\mathcal{A}\)-omnihost.</p>
+<p>Now, we must show that for every open set \(F\) in the product topology on \(X \times Y\), for every \(x \in F\), some set \(S \in \mathcal{B} \otimes \mathcal{C}\) has \(x\) as an element and is contained in the set \(F\). (We’ve already proven above that it covers the space.)</p>
+<p>All open sets \(F\) are of the form \(\bigcup \mathcal{F}\), where \(\mathcal{F} \subseteq \mathcal{S} \otimes \mathcal{T}\). So any \(x \in F\) is in at least one set \(U \times V\), with \(U \in \mathcal{S}\) and \(V \in \mathcal{T}\). This means that \(x = (a, b)\) for some \(a \in U\), b V$, where \(U\) and \(V\) are both open in their respective topologies. But we know that \(\mathcal{S}\) and \(\mathcal{T}\) have bases (by hypothesis) \(\mathcal{B}\) and \(\mathcal{C}\), so there are bases sets \(B_a \in X\) and \(C_b \in Y\) such that \(a \in B_a \subseteq \mathcal{B}\) and \(b \in C_b \subseteq \mathcal{C}\). This implies that \(x \in B_a \times C_b \subseteq U \times V\). \(\Box\)</p>
+<p>Substructures are useful in many parts of math. They will be of similar usefulness here. We will describe a way of restricting a given topological space on \(X\) to some subset \(Y\) of \(X\).</p>
+<p>A <strong>subspace topology</strong> of a topological space \((X, \mathcal{T})\) is the topology defined by:</p>
+<p>\[ \{ Y \cap U : U \in \mathcal{T} \}\]</p>
+<p>for some subset \(Y\) of \(X\).</p>
+<p>We must prove that it is a topological space on \(Y\). \(Y\) and \(\emptyset\) are both open (\(X \cap Y = Y\)). If \(\mathcal{U}\) is any collection of sets open in \(X\), then the let the set \(S\) be the collection of intersections of \(Y\) and sets from \(\mathcal{U}\). Then we have:</p>
+<p>\[ \bigcup \{Y \cap U : U \in \mathcal{U} \} = Y \cap (\bigcup \mathcal{U})\]</p>
+<p>The equality holds by the distributive law. This is clearly in the subspace topology, since \(X\) is a topological space, so the subspace is closed under arbitrar union. Ditto for the case of intersection. \(\Box\)</p>
+<p>Naturally, we should see how our new notion relates to bases.</p>
+<p><strong>Lemma:</strong> If topological space \((X, \mathcal{T}\) has a basis \(\mathcal{B}\), then</p>
+<p>\[\{ Y \cap B : B \in \mathcal{B}\}\]</p>
+<p>is a basis for the subspace topology on \(Y\).</p>
+<p><em>Proof:</em> Every open subset \(U\) of \(X\) is a \(\mathcal{B}\)-omnihost, so every \(x \in Y \cap U\) has a \(B_x \in \mathcal{B}\) such that \(x \in B_x \subseteq U\). Then \(x \in (Y \cap B_x) \subseteq (Y \cap U)\). Also, the set defined above covers \(Y\) because \(\mathcal{B}\) covers X (also uses distributivity). \(\Box\)</p>
+    <footer>
+    <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/">
+      <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+    </a>
+    <p xmlns:dct="http://purl.org/dc/terms/">
+      To the extent possible under law, the person who associated CC0 with this work has waived all copyright and related or neighboring rights to this work.
+    </p>
+    </footer>
+</div>
+</body>
+</html>
