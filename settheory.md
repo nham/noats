@@ -22,3 +22,7 @@ $f(f^{pre}(S) ) = S$, but $f^pre(f(S))$ could be a strict superset of $S$. One w
 If $f: X \rightarrow Y$ is a function, $S \subseteq X$ and $\mathcal{U}$ is a collection of subsets in $Y$ that covers $f(S)$, then let $\mathcal{P} := \{f^{pre}(A) : A \in \mathcal{U}\}$ ($\mathcal{P}$ is the collection of preimages of sets in $\mathcal{U}$. Then we have the following true:
 
 If $\mathcal{U}$ covers $f(S)$, then $\mathcal{P}$ covers $S$. *Proof:* for $x \in S$, $f(x) \in f(S)$, so it's in one $A_x \in \mathcal{U}$, and hence $f^{pre}(A_x)$ is in $\mathcal{P}$. $x$ is in $f^{pre}(A_x)$ for obvious reasons.
+
+---
+
+You can use this in the proof that the image of a continuous function on a compact metric space is compact: $f^{pre}(\bigcup \mathcal{F}) = \bigcup \{ f^{pre}(A) : A \in \mathcal{F}\}$. The idea is that $f(x) \in \bigcup \mathcal{F}$ iff $f(x) \in A$ for some $A \in \mathcal{F}$.
