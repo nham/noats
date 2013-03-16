@@ -1,3 +1,5 @@
+# Set theory odds and ends
+
 One fact that's important for some lemmas in topology is this: Given $A$, $B$ are subsets of $X$, then $A \subseteq X - B$ iff $B \subseteq X - A$. There are two ways to see this:
 
  1. First we need the following lemma: $A \subseteq B$ iff $X-B \subseteq X-A$. This is easily proved via taking the contrapositive. You can also think pictorially: if $A$ is just a section of $B$, then inverting $A$ and $B$ results in the inversion of $B$ being just a section of the inversion of $A$.
