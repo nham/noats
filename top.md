@@ -96,7 +96,7 @@ We must prove that it is a topological space on $Y$. $Y$ and $\emptyset$ are bot
 
 $$ \bigcup \{Y \cap U : U \in \mathcal{U} \} = Y \cap (\bigcup \mathcal{U})$$
 
-The equality holds by the distributive law. This is clearly in the subspace topology, since $X$ is a topological space, so the subspace is closed under arbitrar union. Ditto for the case of intersection. $\Box$
+The equality holds by the distributive law. This is clearly in the subspace topology, since $X$ is a topological space, so the subspace is closed under arbitrary union. Ditto for the case of intersection. $\Box$
 
 Naturally, we should see how our new notion relates to bases.
 
@@ -107,3 +107,12 @@ $$\{ Y \cap B : B \in \mathcal{B}\}$$
 is a basis for the subspace topology on $Y$.
 
 *Proof:* Every open subset $U$ of $X$ is a $\mathcal{B}$-omnihost, so every $x \in Y \cap U$ has a $B_x \in \mathcal{B}$ such that $x \in B_x \subseteq U$. Then $x \in (Y \cap B_x) \subseteq (Y \cap U)$. Also, the set defined above covers $Y$ because $\mathcal{B}$ covers X (also uses distributivity). $\Box$
+
+
+If $(X, \mathcal{T})$ is a space and $A \subseteq X$, let's write $X|A$ for the subspace topology of $X$ induced by $A$, and $\mathcal{T}|A$ for the topology of the space. Also, if $Y$ is a space, then write $pt(X,Y)$ for the product topology on $X \times Y$.
+
+**Lemma:** If $X$, $Y$ are spaces with resp. topologies $\mathcal{T}_X$ and $\mathcal{T}_Y$ and $A \subseteq X$, $B \subseteq Y$, then:
+
+$$ pt(X|A, Y|B) = pt(X,Y)|(A \times B) $$
+
+*Proof:* We show that the bases are equal. The basis of $pt(X|A, Y|B)$ is $\mathcal{T}_X |A \otimes \mathcal{T}_Y | B$. So any basis element $S \times T$ has $S = A \cap U$, $T = B \cap V$ for $U \in \mathcal{T}_X$ and $V \in \mathcal{T}_Y$. But $(A \cap U) \times (B \cap V) = (A \times B) \cap (U \times V)$, so $S \times T$ is subspace of $pt(X,Y)$ induced by $A \times B$ (since $U \times V$ is open in $pt(X,Y)$). The other direction clearly also holds. $\Box$
