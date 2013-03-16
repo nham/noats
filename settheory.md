@@ -26,3 +26,7 @@ If $\mathcal{U}$ covers $f(S)$, then $\mathcal{P}$ covers $S$. *Proof:* for $x \
 ---
 
 You can use this in the proof that the image of a continuous function on a compact metric space is compact: $f^{pre}(\bigcup \mathcal{F}) = \bigcup \{ f^{pre}(A) : A \in \mathcal{F}\}$. The idea is that $f(x) \in \bigcup \mathcal{F}$ iff $f(x) \in A$ for some $A \in \mathcal{F}$.
+
+---
+
+$(A \times B) \cap (X \times Y) = (A \cap X) \times (B \cap Y)$, but the same does not hold for union.
