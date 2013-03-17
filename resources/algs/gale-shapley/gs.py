@@ -1,4 +1,13 @@
 from sys import argv
+import pprint
+
+debug_mode = True
+
+def log_match_state(pairing):
+    if debug_mode == True:
+        print('----------')
+        for i in range(0, int(len(pairing) / 2)):
+            pprint.pprint(pairing)
 
 # An entity with preferences
 class prefEntity:
@@ -67,6 +76,8 @@ def gs(size, prefA, prefB):
         else:
             terminate = True
 
+        log_match_state(p)
+
     # finally return
     return p
 
@@ -92,4 +103,4 @@ if __name__ == '__main__':
             prefB.append(prefEntity(ele))
 
         pairing = gs(inp.n, prefA, prefB)
-        print(pairing)
+        pprint.pprint(pairing)
