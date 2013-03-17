@@ -116,3 +116,6 @@ If $(X, \mathcal{T})$ is a space and $A \subseteq X$, let's write $X|A$ for the 
 $$ pt(X|A, Y|B) = pt(X,Y)|(A \times B) $$
 
 *Proof:* We show that the bases are equal. The basis of $pt(X|A, Y|B)$ is $\mathcal{T}_X |A \otimes \mathcal{T}_Y | B$. So any basis element $S \times T$ has $S = A \cap U$, $T = B \cap V$ for $U \in \mathcal{T}_X$ and $V \in \mathcal{T}_Y$. But $(A \cap U) \times (B \cap V) = (A \times B) \cap (U \times V)$, so $S \times T$ is subspace of $pt(X,Y)$ induced by $A \times B$ (since $U \times V$ is open in $pt(X,Y)$). The other direction clearly also holds. $\Box$
+
+
+A set is $A$ is **closed** if $X-A$ is open.
