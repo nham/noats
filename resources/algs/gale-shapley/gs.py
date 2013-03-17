@@ -1,3 +1,5 @@
+from sys import argv
+
 # An entity with preferences
 class prefEntity:
     # pass in a list of numbers representing some permutation of
@@ -70,22 +72,24 @@ def gs(size, prefA, prefB):
 
 
 # run it
-from input import *
+if __name__ == '__main__':
+    print(argv)
+    
+    if len(argv) == 1:
+        print("need module name to import")
+    else:
+        inp = __import__(argv[1])
 
-import pprint
+        print('a: ' + str(inp.a))
+        print('b: ' + str(inp.b))
 
-print('a: ' + str(a))
-print('b: ' + str(b))
-pprint.pprint(a)
-pprint.pprint(b)
+        prefA = []
+        prefB = []
+        for ele in inp.a:
+            prefA.append(prefEntity(ele))
 
-prefA = []
-prefB = []
-for ele in a:
-    prefA.append(prefEntity(ele))
+        for ele in inp.b:
+            prefB.append(prefEntity(ele))
 
-for ele in b:
-    prefB.append(prefEntity(ele))
-
-pairing = gs(n, prefA, prefB)
-print(pairing)
+        pairing = gs(inp.n, prefA, prefB)
+        print(pairing)
