@@ -6,8 +6,10 @@ debug_mode = True
 def log_match_state(pairing):
     if debug_mode == True:
         print('----------')
-        for i in range(0, int(len(pairing) / 2)):
-            pprint.pprint(pairing)
+        for key in pairing.keys():
+            if key[0] == 'A':
+                print(str(key[1]) + '--' + str(pairing[key]))
+
 
 # An entity with preferences
 class prefEntity:
@@ -28,37 +30,43 @@ class prefEntity:
         return self.prefs.index(i) + 1
 
 
-# prefA and prefB are lists of prefEntities
-def gs(size, prefA, prefB):
-    A = 'A'
-    B = 'B'
-    p = {}
+class GSMatching:
+    def __init__(self, prefA, prefB):
+        self.m = {}
+        self.A = prefA
+        self.B = prefB
+        self.size = len(prefA)
 
-    def is_engaged(X, i):
-        return (X, i) in p
+    def is_engaged(self, X, i):
+        return (X, i) in self.m
 
-    def pair(i, j):
-        p[(A, i)] = j
-        p[(B, j)] = i
+    def pair(self, i, j):
+        self.m[('A', i)] = j
+        self.m[('B', j)] = i
 
     # A_i proposes to B_j
-    def propose(i, j):
-        if is_engaged(B, j):
-            if prefB[j].prefers(i, p[(B, j)]):
-                oldA = p.pop((B,j))
-                pair(i,j)
-                p.pop((A, oldA))
+    def propose(self, i, j):
+        if self.is_engaged('B', j):
+            if self.B[j].prefers( i, self.m[('B', j)] ):
+                oldA = self.m.pop(('B',j))
+                self.pair(i,j)
+                self.m.pop(('A', oldA))
             else:
                 return False
         else:
-            pair(i,j)
+            self.pair(i,j)
 
     # return an un-matched element of A, or False if there isn't one
-    def get_unmatched():
-        for i in range(0, size):
-            if not is_engaged(A, i):
+    def get_unmatched(self):
+        for i in range(0, self.size):
+            if not self.is_engaged('A', i):
                 return i
         return False
+
+
+# prefA and prefB are lists of prefEntities
+def gs(size, prefA, prefB):
+    m = GSMatching(prefA, prefB)
 
     # list of, for each A, the next B to propose to
     nextProp = []
@@ -68,24 +76,20 @@ def gs(size, prefA, prefB):
     # main loop
     terminate = False
     while not terminate:
-        i = get_unmatched()
-        #print('matching ' + str(i))
+        i = m.get_unmatched()
         if i is not False:
-            propose(i, prefA[i].prefs[ nextProp[i] ])
+            m.propose(i, prefA[i].prefs[ nextProp[i] ])
             nextProp[i] += 1
         else:
             terminate = True
 
-        log_match_state(p)
+        log_match_state(m.m)
 
-    # finally return
-    return p
+    return m.m
 
 
 # run it
 if __name__ == '__main__':
-    print(argv)
-    
     if len(argv) == 1:
         print("need module name to import")
     else:
@@ -103,4 +107,5 @@ if __name__ == '__main__':
             prefB.append(prefEntity(ele))
 
         pairing = gs(inp.n, prefA, prefB)
-        pprint.pprint(pairing)
+        print('\nFinal:')
+        log_match_state(pairing)
