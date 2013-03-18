@@ -74,14 +74,12 @@ def gs(size, prefA, prefB):
         nextProp.append(0)
 
     # main loop
-    terminate = False
-    while not terminate:
+    i = True
+    while i is not False:
         i = m.get_unmatched()
         if i is not False:
             m.propose(i, prefA[i].prefs[ nextProp[i] ])
             nextProp[i] += 1
-        else:
-            terminate = True
 
         log_match_state(m.m)
 
