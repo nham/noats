@@ -60,6 +60,11 @@ class GSMatching:
             self.pair(i,j)
 
     # return an un-matched element of A, or False if there isn't one
+    # actually, we start at index 0 and return the *first* unpaired element of A
+    # as K&T note, this can result in unfairness, as there are certain stable
+    # matchings that the algorithm will never find
+    #
+    # We can plug in different methods here to get different stable matchings.
     def get_unmatched(self):
         for i in range(0, self.size):
             if not self.is_engaged(('A', i)):
