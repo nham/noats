@@ -37,8 +37,8 @@ class GSMatching:
         self.B = prefB
         self.size = len(prefA)
 
-    def is_engaged(self, X, i):
-        return (X, i) in self.m
+    def is_engaged(self, entity):
+        return entity in self.m
 
     def pair(self, i, j):
         self.m[('A', i)] = j
@@ -46,20 +46,23 @@ class GSMatching:
 
     # A_i proposes to B_j
     def propose(self, i, j):
-        if self.is_engaged('B', j):
-            if self.B[j].prefers( i, self.m[('B', j)] ):
-                oldA = self.m.pop(('B',j))
+        proposee = ('B', j)
+
+        if self.is_engaged(proposee):
+            if self.B[j].prefers( i, self.m[proposee] ):
+                oldA = self.m.pop(proposee)
                 self.pair(i,j)
                 self.m.pop(('A', oldA))
             else:
                 return False
+
         else:
             self.pair(i,j)
 
     # return an un-matched element of A, or False if there isn't one
     def get_unmatched(self):
         for i in range(0, self.size):
-            if not self.is_engaged('A', i):
+            if not self.is_engaged(('A', i)):
                 return i
         return False
 
