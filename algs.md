@@ -39,3 +39,13 @@ $(a_1, b_1)$ is matched first, then $a_1$ must have already proposed to $b_2$ (s
 
 
 **Missing Lemma:** If $a \in A$ proposes to $b \in B$, then it must have proposed to all the $b' \in B$ that it prefers to $b$ first.
+
+
+
+## Some problems
+
+**Interval scheduling problem:** You have a set $R$ of $n$ closed intervals $[s_i, f_i]$ in $\mathbb{R}$, such that every $s_i < f_i$. Find a pairwise-disjoint subset of $R$ of maximum size.
+
+**Bipartite matching problem:** Given a bipartite graph $G$, find a matching (collecting of edges that are pairwise non-adjacent) of maximum size.
+
+**Independent set problem:** Given any graph, find an independent set (set of non-neighboring nodes, a.k.a. a set of nodes whose induced subgraph has no edges) of max size.
