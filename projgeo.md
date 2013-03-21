@@ -32,3 +32,16 @@ Restated: Two distinct lines intersect in at most one point, and two distinct po
 *Proof 2:* Let $p$ be an arbitrary point, and $l$ and $m$ be arbitrary distinct lines. If both are incident on $p$, then they intersect at $p$ so that $l \wedge m = p$. There's three distinct points on each line by an earlier lemma, so there's at least one other point, $p_l$, on $l$ and one, $p_m$, on $m$ that aren't $p$. These have to be distinct from each other, because two lines can't intersect in two different places (and they already intersect at $p$). $p_l \vee p_m$ is distinct from $l$ and from $m$ because $p_l$ is already on $l$, so it can't be on $m$ because the only point on both is $p$, which we've already established is distinct from both $p_l$ and $p_m$.
 
 Hence, $p_l \vee p_m$ does not have $p$ on it, because $p_l \vee p_m$ already intersects both $l$ and $m$ at one point each, and $p$ is the intersection of $l$ and $m$, so adding $p$ to $p_l \vee p_m$ would be creating two distinct intersections between two lines. $\Box$
+
+The **count** of a line $l$, notated $\mathcal{C}(l)$, is the number of points incident to that line. Similarly define the count for points and the number of lines incident to the point.
+
+
+**Theorem:** If $(\mathcal{P}, \mathcal{L}, \diamond)$ is a projective plane where the point and line sets are finite, then 1) the counts $\mathcal{C}(l)$ of every line $l \in \mathcal{L}$ are all equal, 2) the counts $\mathcal{C}(p)$ of all points $p \in \mathcal{P}$ are all equal, and 3) the line-count is equal to the point-count.
+
+*Proof:* First we prove that all lines have the same number of points on them. Let $l$ and $m$ be distinct lines. The idea is to find some point $q$ not on either $l$ or $m$, then draw lines between $q$ and each point on $l$ and each point on $m$. The line between $q$ and each point on $l$ intersects $m$, which gives us a point on $m$. The same holds for $m$, so we will have proved our proposition.
+
+To find the $q$, first take the intersection $p = l \wedge m$. If  we can find a line $n$ distinct from $l$ and $m$, then we could use a previous lemma to find a point $q$ on $n$ distinct from $p$. This point $q$ would have to be distinct from $l$ and $m$, because both those lines already intersect $n$ at $p$ and are distinct from $n$. From the first lemma, every projective plane has at least 6 distinct lines, so we can find such a line $n$. 
+
+Now let $\{a_1, \ldots, a_k\}$ be points on $l$ that aren't $p$. Each line $q \vee a_i$ intersects $m$ at $b_i$. Two lines $q \vee a_i$ and $q \vee a_j$ can't intersect anywhere but at $q$, so each $b_i \neq b_j$. Hence for every point on $l$, there's a point on $m$. This argument works symmetrically for $m$, so every line has the same count, $k+1$.
+
+Now, given a point $p$ and a line $l$ that doesn't touch $p$ (which we can find due to a previous lemma). This $l$ has $k+1$ points on it, as  just shown, so we can join all of them to $p$ to get lines incident to $p$. If any two of the lines were equal, that would imply that $p$ was on the original line, contrary to hypothesis. So there are at least $k+1$ lines incident to $p$. If there were another, it would intersect $l$ at a distinct point, contradicting our assumption that there are only $k+1$ points on $l$. $\Box$
