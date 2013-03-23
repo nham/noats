@@ -1,5 +1,6 @@
 A **group with operators** is a pair $(G, \ast, \Omega)$ such that $(G, \ast)$ is a group and $\Omega$ is a collection of endomorphisms on $G$.
 
+A **field** is a commutative division ring.
 
 A **vector space** is a triple $(V, F, +, \cdot)$ such that:
 
