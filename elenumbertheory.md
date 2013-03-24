@@ -18,3 +18,7 @@ with each $r_i < b$. Then $0 = (q_1 - q_2)b + (r_1 - r_2)$. We must have $(q_1 -
 
 $$q_1 = q_2$$
 $$r_1 = r_2$$.
+
+
+## Bezout's identity
+This identity states that the GCD of two numbers, $a, b$ is the smallest positive integer combination of $a$ and $b$. There is apparently some way to see this directly from the Euclidean algorithm (it's not too hard to see for specific examples, but it's not easy to see in the general case).
