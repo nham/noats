@@ -22,3 +22,9 @@ $$r_1 = r_2$$.
 
 ## Bezout's identity
 This identity states that the GCD of two numbers, $a, b$ is the smallest positive integer combination of $a$ and $b$. There is apparently some way to see this directly from the Euclidean algorithm (it's not too hard to see for specific examples, but it's not easy to see in the general case).
+
+Let $C = \{m a + n b : m, n \in \mathbb{Z}\}$. Every common divisor $d$ of $a$ and $b$ also divides every element of $C$. Consider the smallest positive element $d$ of $C$. For any $x \in C$, we can use the division theorem on $x$ and $d$ since $d \neq 0$. $d = u a + v b$ and $x = m a + n b$, so we can find some $q \in \mathbb{Z}$ and $r \in \mathbb{Z}$ such that $x = q d + r$, with $0 \leq r < d$. But
+
+$$x - qd = (m - q u) a + (n - q v) b $$
+
+which is nonnegative and less than $d$. Since $d$ is the smallest positive, $r$ must be zero. So every element of $C$ is a multiple of $d$. In particular, $a$ and $b$ are in $C$, so $d$ divides both. Thus $d$ is the greatest common divisor. $\Box$
