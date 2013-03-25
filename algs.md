@@ -41,6 +41,11 @@ $(a_1, b_1)$ is matched first, then $a_1$ must have already proposed to $b_2$ (s
 **Missing Lemma:** If $a \in A$ proposes to $b \in B$, then it must have proposed to all the $b' \in B$ that it prefers to $b$ first.
 
 
+**Theorem:** No matter how free entities in $A$ are chosen, Gale-Shapley returns the same stable matching.
+
+*Proof:* Suppose we have the set of all stable matchings that different G-S algorithm executions return (for every conceivable choce method). Let $b \in B$ be a *valid partner* for $a$ if $(a, b)$ is in some execution. We want to derive a contradiction from supposing that two executions, $S$ and $T$ return different partners for some $a \in A$. Suppose that in $T$ a valid partner of some entity in $A$ rejects that entity. Let $a$ be the first entity rejected by a valid partner in $T$, and call the partner $x$. Then in some execution $S$, $a$ and $x$ are paired, while $b$ and $x$ are paired in $T$.
+
+$x$ clearly prefers $b$ to $a$, so why didn't $b$ & $x$ pair in $S$? It must have been the case that $b$ never proposed to $x$ (otherwise $x$ would have rejected $a$ for $b$ in $S$ as well). So there was some $y$ that $b$ was happily paired up with in $S$.  Now why didn't $b$ pair with $y$ in $T$? $b$ would have proposed to $y$ before proposing to $x$ in $T$ (since $b$ prefers $y$ to $x$), so $b$ must have been rejected by $y$. But this rejection had to have happened before $b$ proposed to $x$, which caused our "first rejection" of $a$ by $x$. And $y$ is a valid partner for $b$. This is a contradiction. So all executions of Gale-Shapley return the same stable matching. $\Box$
 
 ## Some problems
 
