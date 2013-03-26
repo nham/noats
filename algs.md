@@ -53,4 +53,4 @@ $x$ clearly prefers $b$ to $a$, so why didn't $b$ & $x$ pair in $S$? It must hav
 
 **Bipartite matching problem:** Given a bipartite graph $G$, find a matching (collecting of edges that are pairwise non-adjacent) of maximum size.
 
-**Independent set problem:** Given any graph, find an independent set (set of non-neighboring nodes, a.k.a. a set of nodes whose induced subgraph has no edges) of max size.
+**Independent set problem:** Given any graph, find an independent set (set of nodes that are pairwise non-neighboring, a.k.a. a set of nodes whose induced subgraph has no edges) of max size.
