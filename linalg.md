@@ -57,3 +57,7 @@ A **maximal independent set** is a linearly independent set $A$ for which no pro
 *Proof:* (1) If $A$ is a minimal spanning set of $V$, then if $A$ is not linearly independent we must have some $a \in A$ in the span of $A - \{a\}$. We can remove $a$ from $A$ without affecting the span, which contradicts our minimality assumption.
 
 For (2), If $B$ is a maximal independent set and $v \notin span(B)$, then by a previous lemma $B \cup \{v\}$ is independent. This contradicts maximality, so $B$ spans $V$. $\Box$
+
+**Lemma:** If $u = \Sigma(A, s)$ for some linear combination $(A, s)$, and $a \in A$ with $s(a) \neq 0$, then $a \in span(A-\{a\}+\{u\})$
+
+*Proof:* $u = \Sigma s(a) \cdot a$, so if $s(a) \neq 0$ then $a = - s(a)^{-1} (-u + \Sigma_{x \in A - \{a\}} s(x) \cdot x)$. $\Box$
