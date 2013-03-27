@@ -89,6 +89,6 @@ $$ \phi(\Sigma a_i b_i) = \Sigma a_i \phi(b_i)$$
 
 In fact, the collection of $\phi(b_i)$'s is a basis for the image of $\phi$:
 
-**Lemma:** if $V, W$ are finite-dimensional vector spaces and $\phi: V \rightarrow W$ is a linear map and $B = \{v_1, \ldots, v_n\}$ is a basis for $V$, then the image of $B$ is a basis for the image of $\phi$.
+**Lemma:** if $V, W$ are finite-dimensional vector spaces and $\phi: V \rightarrow W$ is a linear map and $B = \{v_1, \ldots, v_n\}$ is a basis for $V$, then the image of $B$ after discarding zero vectors is a basis for the image of $\phi$.
 
 *Proof:* If $w \in img(V)$, then there's a $v \in V$ such that $\phi(v) = w$. So $v$ is some linear combination of $B$, say $v = \Sigma a_i v_i$. So $w = \Sigma a_i \phi(v_i)$, meaning $img(B)$ spans $img(V)$. Also, if we were to remove $\phi(v_k)$ from $img(B)$, we could not have $\phi(v_k) \in span(\phi(B - v_k))$, because that would imply $v_k \in span(B - v_k)$, which could not be since $B$ is a basis. $\Box$
