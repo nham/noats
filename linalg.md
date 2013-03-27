@@ -68,3 +68,17 @@ A **basis** for $V$ is an independent spanning set. A vector space is **finite-d
 **Lemma:** If $V$ is finite-dimensional then any finite spanning set can be pared down to a basis.
 
 *Proof:* If $A$ is a finite spanning set, then remove an element $x \in A$ such that $span(A-\{x\}) = span(A)$. If there is no such $x$, then $A$ is a minimal spanning set, and so is independent. Repeat this procedure (which will terminate since we start from a finite set) until we obtain a minimal spanning set. This is a basis.
+
+**Steinitz Exchange Lemma:** If $A$ spans vector space $V$ and $U = \{u_1, \ldots, u_m\}$ is a linearly independent set in $V$, with $|A| = n$, then for any $k \in [m] $ $\{u_1, \ldots, u_k\} \cup A_{n-k}$ spans $V$, for some $n-k$-subset of $A$. In particular, $m \leq n$.
+
+*Proof:* Let $U = \{u_1, \ldots, u_m\}$. Let $A_1 = A$. Since $A_1$ spans $V$, $u_1 \in span(A_1)$. There must be some $x_1 \in A_1$ that doesn't have a zero coefficient, since $u_1$ isn't zero. Letting $A_2 = A_1 - x_1 + u_1$, we have $x_1 \in span(A_2)$ (by a previous lemma). $span(A_2) = span(A_1)$ since any linear combination requiring some amount of $x_1$ can be accounted for (given that $x_1 is in the span of $A_2$).
+
+For $k < m$, we have that $A_k$ spans $V$. So $u_k \in span(A_k)$, and some $x_k$ not in $U$ is in $span(A_{k+1})$, where $A_{k+1} = A_k - x_k + u_k$. (If only elements of $U$ had non-zero coefficients, we'd have a linear combination of elements of $U$ that resulted in another element of $U$, which is an impossibility given that $U$ is linearly independent).
+
+$A_m$ contains all of $U$, meaning that we removed $m$ elements from $A$ and replaced them with elements of $U$. So $n$ cannot be less than $m$. $\Box$
+
+**Theorem:** Every basis of a finite-dimensional vector space has the same number of elements.
+
+*Proof:*  If $B_1$ and $B_2$ are two bases for $V$, then $|B_1| \leq |B_2|$ and $|B_2 \leq |B_1|$ since bases are both independent and spanning. $\Box$
+
+This theorem affords us a useful definition: the **dimension** of a finite-dimensional vector space $V$, notated $dim V$, is the cardinality of bases of $V$. By the previous theorem this is well-defined.
