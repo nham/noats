@@ -61,3 +61,10 @@ For (2), If $B$ is a maximal independent set and $v \notin span(B)$, then by a p
 **Lemma:** If $u = \Sigma(A, s)$ for some linear combination $(A, s)$, and $a \in A$ with $s(a) \neq 0$, then $a \in span(A-\{a\}+\{u\})$
 
 *Proof:* $u = \Sigma s(a) \cdot a$, so if $s(a) \neq 0$ then $a = - s(a)^{-1} (-u + \Sigma_{x \in A - \{a\}} s(x) \cdot x)$. $\Box$
+
+A **basis** for $V$ is an independent spanning set. A vector space is **finite-dimensional** if it has a finite basis.
+
+
+**Lemma:** If $V$ is finite-dimensional then any finite spanning set can be pared down to a basis.
+
+*Proof:* If $A$ is a finite spanning set, then remove an element $x \in A$ such that $span(A-\{x\}) = span(A)$. If there is no such $x$, then $A$ is a minimal spanning set, and so is independent. Repeat this procedure (which will terminate since we start from a finite set) until we obtain a minimal spanning set. This is a basis.
