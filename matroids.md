@@ -30,3 +30,12 @@ To prove $n(S) \geq 0$, we need to show $|S| \geq r(S)$. This is an easy proof b
 
 *Proof:* If $T$ is independent, $n(T) = 0$. For any $S \subseteq T$, $n(S) \leq n(T)$. But $n(S) \geq 0$ as well. $\Box$
 
+A **base** is a maximal independent set. A **circuit** is a minimal dependent set.
+
+**Theorem:** $N$ is independent iff $N$ is contained in a base iff $N$ contains no circuit.
+
+*Proof:* If $N$ is independent, it's either the biggest independent set containing $N$ in the matroid, or we can find one bigger. Repeat this until we find a maximal independent set. This terminates eventually because the containing matroid is finite. So $N$ is contained in a base.
+
+If $N$ is contained in a base, then it cannot contain a circuit, because that would imply that a base contains a circuit. A base is independent, however, so all subsets are independent (hence they are not circuits).
+
+If $N$ contains no circuit, then it can't contain a dependent set at all (otherwise we could find a circuit by removing elements until we can't remove any more without making it independent). So every subset is independent, and in particular $N$ is independent. $\Box$
