@@ -10,13 +10,23 @@ A **matroid** is a finite set $M$ together with a function $r: \mathcal{P}(M) \r
 
 Define the **nullity** of a subset $S$ of a matroid $M$ to be $n(S) := |S| - r(S)$. A set $X$ is **independent** if $n(X) = 0$ and **dependent** otherwise.
 
+**Lemma:** If $S \subseteq T$ are subsets of a matroid $M$, then $r(S) \leq r(T)$, and $n(S) \leq n(T)$.
 
-**Lemma:** If $S \subseteq T$ are subsets of a matroid $M$, then $r(S) \leq r(T)$.
+*Proof:* For any $S \subseteq T$, $|T - S| = k$ for some $k$ with $0 \leq k \leq |T|$. So we can find $k$ elements $x_1, \ldots, x_k$ in $T$ and not in $S$. Hence we can construct a sequence $A_0 = S$, $A_1 = A_0 + x_1, \ldots, $A_j = A_{j-1} + x_j$. By axiom 2, $r(S) = r(A_0) \leq r(A_1) \leq \ldots \leq r(A_k) = r(T)$.
 
-*Proof:* For any $S \subseteq T$, $|T - S| = k$ for some $k$ with $0 \leq k \leq |T|$. So we can find $k$ elements $x_1, \ldots, x_k$ in $T$ and not in $S$. So we can construct a sequence $A_0 = T$, $A_1 = A_0 - x_1, \ldots, $A_j = A_{j-1} - x_j$. By axiom 2, $r(T) = r(A_0) \geq r(A_1) \geq \ldots \geq r(A_k) = r(S)$. $\Box$
+Also, for every $i$ $0 \leq i < k$, $r(A_{i+1}) - r(A_i) \leq 1$ (again by axiom 2), so $r(T) - r(S) = r(A_k) - r(A_{k-}) + \ldots + r(A_1) - r(A_0) \leq k = |T| - |S|$. We can rearrange this to produce:
+
+$$|S| - r(S) \leq |T| - r(T)$$
+
+Or: $n(S) \leq n(T)$. $\Box$
 
 **Lemma:** For all $S \subseteq M$ of a matroid $M$, $r(S) \geq 0$ and $n(S) \geq 0$.
 
 *Proof:* $\emptyset \subseteq S$ for any subset $S$, so $0 = r(\emptyset) \leq r(S)$.
 
-To prove $n(S) \geq 0$, we need to show $|S| \geq r(S)$.
+To prove $n(S) \geq 0$, we need to show $|S| \geq r(S)$. This is an easy proof by induction using axiom 2. $\Box$ 
+
+**Lemma:** Every subset of an independent set is independent.
+
+*Proof:* If $T$ is independent, $n(T) = 0$. For any $S \subseteq T$, $n(S) \leq n(T)$. But $n(S) \geq 0$ as well. $\Box$
+
