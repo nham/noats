@@ -14,7 +14,9 @@ A **vector space** is a triple $(V, F, +, \cdot)$ such that:
     - $(a + b) \cdot v = (a \cdot v) + (b \cdot v)$
     - $(ab) \cdot v = a \cdot (b \cdot v)$
 
-Let $A$ be some finite set of vectors in a vector space $(V, F)$. A **scaling** on $A$ is defined to be a mapping $s: A \rightarrow F$ assigning to every vector in $A$ some scalar. Then a **linear combination** is the pair $(A, s)$, and the **result** from a linear combination is the sum $\Sigma_{a \in A} s(a) \cdot a$. This is a vector in $V$ because any vector space is closed under linear combinations.
+Let $A$ be some finite set of vectors in a vector space $(V, F)$. A **scaling** on $A$ is defined to be a mapping $s: A \rightarrow F$ assigning to every vector in $A$ some scalar. Then a **linear combination** is the pair $(A, s)$, and the **result** from a linear combination is the vector $\Sigma_{a \in A} s(a) \cdot a$. 
+
+A subset $S$ of vector space $V$ is a **subspace** $V$ if it's closed under linear combinations.
 
 A set $A$ is **linearly independent** if the only linear combination of any finite subset $U$ of $A$ that results in $0$ (the zero vector) is the constant scaling $s(a) = 0$ for all $a \in U$. Let's call the linear combination that uses the constant zero scaling a **trivial** combination of $U$. Restated, a set is linearly independent if the only linear combination obtaining zero is the trivial combination.
 
