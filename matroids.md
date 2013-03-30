@@ -40,14 +40,32 @@ If $N$ is contained in a base, then it cannot contain a circuit, because that wo
 
 If $N$ contains no circuit, then it can't contain a dependent set at all (otherwise we could find a circuit by removing elements until we can't remove any more without making it independent). So every subset is independent, and in particular $N$ is independent. $\Box$
 
-**Lemma:** For any subsets $S$ and $T$ of a matroid, define
+For the next proofs, we define the following. For any subsets $S$ and $T$ of a matroid, define
 
 $$\Delta(S,T) := r(S + T) - r(S)$$
 
-Then if $x$, $y$ are not in $S$, then $\Delta(S + x, y) \leq \Delta(S, y)$.
+**Lemma:** If $x$, $y$ are not in $S$, then $\Delta(S + x, y) \leq \Delta(S, y)$.
 
 *Idea:* In words, adding some $y$ to a set after first adding $x$ to the set can't increase the rank more than just adding $y$ increases it.
 
 *Proof:* If $\Delta(S,y) = 1$, then it clearly holds since axiom 2 tells us that adding an element to a set increases the rank by at most one. So assume that $\Delta(S,y) = 0$.
 
 Restating this, $r(S + y) = r(S)$. Now, if $r(S + x) = r(S)$, then $r(S + x + y) = r(S)$ by axiom 3, hence $\Delta(S + x, y) = 0$. So assume that $r(S+x) = r(S) + 1$. By axiom 2, $r(S) + 1 = r(S+x) \leq r(S+x+y) \leq r(S+x) + 1$. Also by axiom 2, $r(S) = r(S+y) \leq r(S+x+y) \leq r(S+y) + 1 = r(S) + 1$. So $r(S+x) \leq r(S+x+y) \leq r(S+x)$, or $\Delta(S+x, y) = 0$. $\Box$
+
+**Lemma:** If $y \notin S$, then $\Delta(S+T, y) \leq \Delta(S, y)$.
+
+*Proof:* Induction using the previous lemma. $T = \{x_1, \ldots, x_k\}$, so $\Delta(S, y) \geq \Delta(S+x_1, y) \geq \ldots \geq \Delta(S + x_1 + \ldots + x_{k-1}, y) \geq \Delta(S + T, y)$. $\Box$
+
+**Corollary:** $\Delta(S+y, T) \leq \Delta(S,T)$
+
+*Proof:
+
+$$ \Delta(S+T, y) \leq \Delta(S, y) $$
+$$ \iff r(S+T+y) - r(S+T) \leq r(S+y) - r(S) $$
+$$ \iff r(S+T+y) - r(S+y) \leq r(S+T) - r(S) $$
+$$ \iff \Delta(S+y, T) \leq \Delta(S,T) $$
+
+
+**Theorem:** $\Delta(S+T, U) \leq \Delta(S, U)$
+
+*Proof:* Using the previous lemma's corollary, we use the same induction strategy as in the previous lemma. $\Box$
