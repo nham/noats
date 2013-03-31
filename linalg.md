@@ -114,3 +114,15 @@ $$ \sum a_{i1} x_1 = c_i, i \in [k]$$
 Note that there are $k (m + 1)$ knowns and $m$ unknowns.
 
 The set of all $(x_1, \ldots, x_m) \in \mathbb{F}^m$ that solve a system of linear equations is called the **solution set**. If $c_i = 0$ for all $i$, then the system is called a **homogeneous** system of linear equations. Clearly the zero vector of $\mathbb{F}^m$ is a solution to a homogeneous system, and it is called the **trivial solution**.
+
+There is a complementary way of viewing a system of linear equations: let
+
+$$v_i = \begin{bmatrix}a_{i1} \\ \vdots \\ a_{ik}\end{bmatrix}$$
+
+and
+
+$$u = \begin{bmatrix} c_1 \\ \vdots \\ c_k \end{bmatrix}$$
+
+be vectors in $\mathbb{F}^k$. The equations say that we are trying to find some linear combination of $v_1, \ldots, v_m$ that results in $u$. If the system is homogeneous, meaning that $u = 0$, any nontrivial solutions imply that $v_1, \ldots, v_m$ are linearly dependent.
+
+If $v_1, \ldots, v_m$ do not span $\mathbb{F}^k$, then $u$ may not be in the span, meaning that the system has no solution. This will always happen if $m < k$ (because we don't have enough vectors for a basis of $\mathbb{F}^k$, which is a minimal spanning set), but could also happen if $m \geq k$ and the set of $v_i$'s are linearly dependent.
