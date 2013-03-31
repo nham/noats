@@ -94,3 +94,19 @@ In fact, the collection of $\phi(b_i)$'s is a basis for the image of $\phi$:
 **Lemma:** if $V, W$ are finite-dimensional vector spaces and $\phi: V \rightarrow W$ is a linear map and $B = \{v_1, \ldots, v_n\}$ is a basis for $V$, then the image of $B$ after discarding zero vectors is a basis for the image of $\phi$.
 
 *Proof:* If $w \in img(V)$, then there's a $v \in V$ such that $\phi(v) = w$. So $v$ is some linear combination of $B$, say $v = \Sigma a_i v_i$. So $w = \Sigma a_i \phi(v_i)$, meaning $img(B)$ spans $img(V)$. Also, if we were to remove $\phi(v_k)$ from $img(B)$, we could not have $\phi(v_k) \in span(\phi(B - v_k))$, because that would imply $v_k \in span(B - v_k)$, which could not be since $B$ is a basis. $\Box$
+
+## Systems of linear equations
+
+A *linear equation in $m$ variables* is an equation like this:
+
+$$ a_1 x_1  + \ldots + a_m x_m = c$$
+
+where the $a_i$'s and $c$ are fixed elements of some field $\mathbb{F}$ and the $x_i$'s are variables in $\mathbb{F}$. The task is to *solve* the equation for the variables, meaning to find the set of variables for which the equation is true.
+
+It is an easy to generalize this to multiple linear equations which must be solved simultaneously. So we define a **system of linear equations** as a collection of $k$ linear equations:
+
+$$ \Sigma a_i1 x_1 = c_i, i \in [k]$$
+
+Note that there are $k (m + 1)$ knowns and $m$ unknowns.
+
+The set of all $(x_1, \ldots, x_m) \in \mathbb{F}^m$ that solve a system of linear equations is called the **solution set**. If $c_i = 0$ for all $i$, then the system is called a **homogeneous** system of linear equations. Clearly the zero vector of $\mathbb{F}^m$ is a solution to a homogeneous system, and it is called the **trivial solution**.
