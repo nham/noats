@@ -14,7 +14,7 @@ A **vector space** is a triple $(V, F, +, \cdot)$ such that:
     - $(a + b) \cdot v = (a \cdot v) + (b \cdot v)$
     - $(ab) \cdot v = a \cdot (b \cdot v)$
 
-Let $A$ be some finite set of vectors in a vector space $(V, F)$. A **scaling** on $A$ is defined to be a mapping $s: A \rightarrow F$ assigning to every vector in $A$ some scalar. Then a **linear combination** is the pair $(A, s)$, and the **result** from a linear combination is the vector $\Sigma_{a \in A} s(a) \cdot a$. 
+Let $A$ be some finite set of vectors in a vector space $(V, F)$. A **scaling** on $A$ is defined to be a mapping $s: A \rightarrow F$ assigning to every vector in $A$ some scalar. Then a **linear combination** is the pair $(A, s)$, and the **result** from a linear combination is the vector $\sum{a \in A} s(a) \cdot a$. 
 
 A subset $S$ of vector space $V$ is a **subspace** $V$ if it's closed under linear combinations.
 
@@ -26,7 +26,7 @@ The **span** of a set $A$ is the set of all vectors resulting from a linear comb
 
 **Lemma:** If $A$ is finite and linearly independent, then for every $v \in span(A)$ there is exactly one linear combination $(A, s_v)$ which results in $v$.
 
-*Proof:* Assume there are two, with scalings $s_v$ and $t_v$. So $\Sigma s_v(a) \cdot a = v = \Sigma t_v(a) \cdot a$. The linear combination with scaling $r_v$ defined by $r_v(a) = s_v(a) - t_v(a)$ results in $0$ because $\Sigma r_v(a) \cdot a = \Sigma s_v(a) \cdot a - \Sigma t_v(a) \cdot a = 0$, so $r_v(a) = 0$ for all $a$. Thus $s_v = t_v$. $\Box$
+*Proof:* Assume there are two, with scalings $s_v$ and $t_v$. So $\sum s_v(a) \cdot a = v = \sum t_v(a) \cdot a$. The linear combination with scaling $r_v$ defined by $r_v(a) = s_v(a) - t_v(a)$ results in $0$ because $\sum r_v(a) \cdot a = \sum s_v(a) \cdot a - \sum t_v(a) \cdot a = 0$, so $r_v(a) = 0$ for all $a$. Thus $s_v = t_v$. $\Box$
 
 **Lemma:** If $A$ is linearly independent and $u \notin span(A)$, then $A \cup \{u\}$ is linearly independent.
 
@@ -36,7 +36,11 @@ The **span** of a set $A$ is the set of all vectors resulting from a linear comb
 
 *Proof:* If some $a \in span(A - \{a\})$, then there is some linear combination $U, s)$, for finite $U \subseteq A-\{a\}$ which results in $a$. Define a scaling $t$ on $U \cup \{a\}$ by: $t(a) = -1$, $t(v) = s(v)$ for all $v \neq a$ in $U$. This is a non-trivial linear combination of a finite subset of $A$ which results in zero. 
 
-Conversely, if $A$ isn't independent, some non-trivial linear combination $(U, s)$ of a finite subset $U$ of $A$ obtains $0$, so letting $x$ be such that $s(x) \neq 0$, then $\Sigma_{a \in U-\{x\}}} -s(x)^{-1} s(a) \cdot a = x$ is a linear combination of $U - \{x\}$ resulting in $x$. $\Box$
+Conversely, if $A$ isn't independent, some non-trivial linear combination $(U, s)$ of a finite subset $U$ of $A$ obtains $0$, so letting $x$ be such that $s(x) \neq 0$, then 
+
+$$\sum_{a \in U-\{x\}} -s(x)^{-1} s(a) \cdot a = x$$
+
+is a linear combination of $U - \{x\}$ resulting in $x$. $\Box$
 
 A set $A$ is a **spanning set** of $V$ if $span(A) = V$.
 
@@ -46,9 +50,9 @@ A set $A$ is a **spanning set** of $V$ if $span(A) = V$.
 
 **Lemma:** If $x \in A$ is in the span of $A - \{x\}$, then $span(A-\{x\}) = span(A)$.
 
-*Proof:* Clearly $span(A-\{x\}) \subseteq span(A)$. if $v \in span(A)$, then some linear combination $(A, s_v)$ results in $v$. By hypothesis $x = \Sigma t_x(a) \cdot a$ for some linear combination $(A-\{x\}, t_x)$. So we have:
+*Proof:* Clearly $span(A-\{x\}) \subseteq span(A)$. if $v \in span(A)$, then some linear combination $(A, s_v)$ results in $v$. By hypothesis $x = \sum t_x(a) \cdot a$ for some linear combination $(A-\{x\}, t_x)$. So we have:
 
-$$v = s_v(x) \cdot x + \Sigma_{a \in A-\{x\}} s_v(a) \cdot a
+$$v = s_v(x) \cdot x + \sum_{a \in A-\{x\}} s_v(a) \cdot a$$
 
 and we can define $t_v(a) = s_v(x) t_x(a) + s_v(a)$ for all $a \in A - \{x\}$. This is a linear combination on $A-\{x\}$ resulting in $v$. $\Box$
 
@@ -60,9 +64,9 @@ A **maximal independent set** is a linearly independent set $A$ for which no pro
 
 For (2), If $B$ is a maximal independent set and $v \notin span(B)$, then by a previous lemma $B \cup \{v\}$ is independent. This contradicts maximality, so $B$ spans $V$. $\Box$
 
-**Lemma:** If $u = \Sigma(A, s)$ for some linear combination $(A, s)$, and $a \in A$ with $s(a) \neq 0$, then $a \in span(A-\{a\}+\{u\})$
+**Lemma:** If $u = \sum(A, s)$ for some linear combination $(A, s)$, and $a \in A$ with $s(a) \neq 0$, then $a \in span(A-\{a\}+\{u\})$
 
-*Proof:* $u = \Sigma s(a) \cdot a$, so if $s(a) \neq 0$ then $a = - s(a)^{-1} (-u + \Sigma_{x \in A - \{a\}} s(x) \cdot x)$. $\Box$
+*Proof:* $u = \sum s(a) \cdot a$, so if $s(a) \neq 0$ then $a = - s(a)^{-1} (-u + \sum_{x \in A - \{a\}} s(x) \cdot x)$. $\Box$
 
 A **basis** for $V$ is an independent spanning set. A vector space is **finite-dimensional** if it has a finite basis.
 
@@ -85,15 +89,15 @@ $A_m$ contains all of $U$, meaning that we removed $m$ elements from $A$ and rep
 
 This theorem affords us a useful definition: the **dimension** of a finite-dimensional vector space $V$, notated $dim V$, is the cardinality of any base of $V$. By the previous theorem this is well-defined.
 
-Every vector in a vector space has a unique representation as a linear combination of a basis. This fact gives us an easy way to characterize linear maps, since we need only know where each basis element is mapped to: If $\{b_1, \ldots, b_n\}$ is a basis for $V$ and $v \in V$, then for some linear combination $v = \Sigma a_i b_i$. So any linear $\phi$ defined on $V$ must have:
+Every vector in a vector space has a unique representation as a linear combination of a basis. This fact gives us an easy way to characterize linear maps, since we need only know where each basis element is mapped to: If $\{b_1, \ldots, b_n\}$ is a basis for $V$ and $v \in V$, then for some linear combination $v = \sum a_i b_i$. So any linear $\phi$ defined on $V$ must have:
 
-$$ \phi(\Sigma a_i b_i) = \Sigma a_i \phi(b_i)$$
+$$ \phi(\sum a_i b_i) = \sum a_i \phi(b_i)$$
 
 In fact, the collection of $\phi(b_i)$'s is a basis for the image of $\phi$:
 
 **Lemma:** if $V, W$ are finite-dimensional vector spaces and $\phi: V \rightarrow W$ is a linear map and $B = \{v_1, \ldots, v_n\}$ is a basis for $V$, then the image of $B$ after discarding zero vectors is a basis for the image of $\phi$.
 
-*Proof:* If $w \in img(V)$, then there's a $v \in V$ such that $\phi(v) = w$. So $v$ is some linear combination of $B$, say $v = \Sigma a_i v_i$. So $w = \Sigma a_i \phi(v_i)$, meaning $img(B)$ spans $img(V)$. Also, if we were to remove $\phi(v_k)$ from $img(B)$, we could not have $\phi(v_k) \in span(\phi(B - v_k))$, because that would imply $v_k \in span(B - v_k)$, which could not be since $B$ is a basis. $\Box$
+*Proof:* If $w \in img(V)$, then there's a $v \in V$ such that $\phi(v) = w$. So $v$ is some linear combination of $B$, say $v = \sum a_i v_i$. So $w = \sum a_i \phi(v_i)$, meaning $img(B)$ spans $img(V)$. Also, if we were to remove $\phi(v_k)$ from $img(B)$, we could not have $\phi(v_k) \in span(\phi(B - v_k))$, because that would imply $v_k \in span(B - v_k)$, which could not be since $B$ is a basis. $\Box$
 
 ## Systems of linear equations
 
@@ -105,7 +109,7 @@ where the $a_i$'s and $c$ are fixed elements of some field $\mathbb{F}$ and the 
 
 It is an easy to generalize this to multiple linear equations which must be solved simultaneously. So we define a **system of linear equations** as a collection of $k$ linear equations:
 
-$$ \Sigma a_i1 x_1 = c_i, i \in [k]$$
+$$ \sum a_{i1} x_1 = c_i, i \in [k]$$
 
 Note that there are $k (m + 1)$ knowns and $m$ unknowns.
 
