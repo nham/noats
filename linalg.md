@@ -83,7 +83,7 @@ $A_m$ contains all of $U$, meaning that we removed $m$ elements from $A$ and rep
 
 *Proof:*  If $B_1$ and $B_2$ are two bases for $V$, then $|B_1| \leq |B_2|$ and $|B_2 \leq |B_1|$ since bases are both independent and spanning. $\Box$
 
-This theorem affords us a useful definition: the **dimension** of a finite-dimensional vector space $V$, notated $dim V$, is the cardinality of bases of $V$. By the previous theorem this is well-defined.
+This theorem affords us a useful definition: the **dimension** of a finite-dimensional vector space $V$, notated $dim V$, is the cardinality of any base of $V$. By the previous theorem this is well-defined.
 
 Every vector in a vector space has a unique representation as a linear combination of a basis. This fact gives us an easy way to characterize linear maps, since we need only know where each basis element is mapped to: If $\{b_1, \ldots, b_n\}$ is a basis for $V$ and $v \in V$, then for some linear combination $v = \Sigma a_i b_i$. So any linear $\phi$ defined on $V$ must have:
 
