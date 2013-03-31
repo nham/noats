@@ -123,6 +123,16 @@ and
 
 $$u = \begin{bmatrix} c_1 \\ \vdots \\ c_k \end{bmatrix}$$
 
-be vectors in $\mathbb{F}^k$. The equations say that we are trying to find some linear combination of $v_1, \ldots, v_m$ that results in $u$. If the system is homogeneous, meaning that $u = 0$, any nontrivial solutions imply that $v_1, \ldots, v_m$ are linearly dependent.
+be vectors in $\mathbb{F}^k$. The equations say that we are trying to find some linear combination of $v_1, \ldots, v_m$ that results in $u$. If the system is homogeneous, meaning that $u = 0$, any nontrivial solutions imply that $v_1, \ldots, v_m$ are linearly dependent. The converse holds as well. If $m > k$ then there will always be nontrivial solutions, since any collection of more than $k$ vectors in a $k$-dimensional space must be linearly dependent.
+
+**Lemma:** The solution set of a homogeneous system of linear equations is a subspace of $\mathbb{F}^m$
+
+*Proof:* If $x = (x_1, \ldots, x_m)$ and $y = (y_1, \ldots, y_m)$ are two solutions to a homogeneous system $\{a_{11}, \ldots, a_{km} \}$, then for all $i \in [k]$:
+
+$$\sum_j a_{ij} (c x_j + d y_j) = c \sum_j a_{ij} x_j + d \sum_j a_{ij} y_j = 0$$
+
+So $cx + dy$ is a solution as well. The set of solutions is thus closed under linear combination. $\Box$
 
 If $v_1, \ldots, v_m$ do not span $\mathbb{F}^k$, then $u$ may not be in the span, meaning that the system has no solution. This will always happen if $m < k$ (because we don't have enough vectors for a basis of $\mathbb{F}^k$, which is a minimal spanning set), but could also happen if $m \geq k$ and the set of $v_i$'s are linearly dependent.
+
+
