@@ -44,3 +44,5 @@ From associativity, it follows that any string of arrows $f_1, \ldots, f_n$ with
 
 
 A **category** is a composition quiver with, for every object $A$, an **identity** arrow $id_A$ in $Hom(A, A)$ such that for any $f \in Hom(A, -)$ $f \circ id_A = f$ and for any $g \in Hom(-, A)$ $id_A \circ g = g$.
+
+We actually need a little bit more. Categories are often bigger than sets will allow. For example, we will need to consider a category of all sets. The "object set" of such a category could not exist, since no set can contain itself. So we will consider a broader notion of a "class". So in all the definitions above, replace "set" with "class". A category where the class of objects really *is* a set is called a **small** category. A category  (not necessarily small) where each class $Hom(A,B)$ of arrows really *is* a proper set is called a **locally small** category. It is interesting to note that in Aluffi actually defines categories to be locally small. I am assuming that locally small categories will be sufficient for virtually all of the contents of the book.
