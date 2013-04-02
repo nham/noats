@@ -27,6 +27,11 @@ It is easy to prove a lemma characterizing injective functions: a function is in
 
 Conversely, it is not clear how to provide a proof that does not look at values. We will be content with supplying a different proof here, not by contrapositive. If $f \circ g = f \circ h$ implies $g = h$, consider all functions from a singleton set $\{0\}$ to $B$. In this case, $f \circ z_1 = f \circ z_2$ means that $f(z_1(0)) = f(z_2(0))$. This implies $z_1(0) = z_2(0)$ But we can find functions $z$ mapping $0$ to any and every element in $B$. So for all $b,c \in B$, $f(b) = f(c)$ implies $b = c$. I.e., $f$ is injective. $\Box$
 
+To go along with the above fact about left inverses and injections, we have: a function is surjective iff it has a right-inverse. Surprisingly this depends on the axiom of choice, but at this point I'm resigned to it. The axiom of choice is essentially the cost of doing business with infinite sets, which are often useful.
+
+Adding these two facts together, we get: a set is bijective iff it has an inverse.
+
+This is the reason that Aluffi talks about bijections being "isomorphisms" of sets: in a category, an isomorphism is a function with a two-sided inverse. So bijections actually are the isomorphisms in the category of sets.
 
 ## Categories
 
