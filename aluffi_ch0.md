@@ -26,3 +26,21 @@ It is easy to prove a lemma characterizing injective functions: a function is in
 *Alt Proof:* If $f$ is injective, there's some $t$ s.t. $t \circ f = id_B$. So if $g, h: A \rightarrow B$ and $f \circ g = f \circ h$, then $g = id_B \circ g = (t \circ f) \circ g = t \circ (f \circ g) = t \circ (f \circ h) = (t \circ f) \circ h = h$. So $f$ is a monomorphism.
 
 Conversely, it is not clear how to provide a proof that does not look at values. We will be content with supplying a different proof here, not by contrapositive. If $f \circ g = f \circ h$ implies $g = h$, consider all functions from a singleton set $\{0\}$ to $B$. In this case, $f \circ z_1 = f \circ z_2$ means that $f(z_1(0)) = f(z_2(0))$. This implies $z_1(0) = z_2(0)$ But we can find functions $z$ mapping $0$ to any and every element in $B$. So for all $b,c \in B$, $f(b) = f(c)$ implies $b = c$. I.e., $f$ is injective. $\Box$
+
+
+## Categories
+
+A **quiver** is a set of *objects* $\mathcal{C}_0$, a set of *arrows* $\mathcal{C}_1$ and two functions $s, t: $\mathcal{C}_1 \rightarrow \mathcal{C}_0$. For any arrow $f$, $s(f)$ is called the **source** of $f$, and $t(f)$ is called the **target**. For any two objects $A$, $B$, we can form the set $Hom(A,B)$ of arrows with a source $A$ and a target $B$. To generalize this a bit, $Hom(-, B)$ is the set of all arrows with target $B$, and $Hom(A, -)$ is the set of all arrows with source $A$.
+
+A **composition quiver** is a quiver along with for every object $A$, an operation $Hom(-, A) \times Hom(A, -) \rightarrow \mathcal{C}_1$ such that 
+
+ - for any $f \in Hom(-, A)$ and $g \n Hom(A, -)$, the result of the operation on $(f,g)$, written $g \circ f$, is an arrow  with $s(g \circ f) = s(f)$ and $t(g \circ f) = t(g)$.
+
+ - if $g \circ f$ and $h \circ g$ are defined, then $h \circ (g \circ f) = (h \circ g) \circ f$.
+
+We say that $g \circ f$ is the **composition** of $g$ with $f$. The second stipulation says that composition is *associative*.
+
+From associativity, it follows that any string of arrows $f_1, \ldots, f_n$ with t(f_1) = s(f_2), \ldots, t(f_{n-}) = s(f_n)$ has a unique composition, and when denoting it we omit parentheses: $f_n \circ \cdots \circ f_1$.
+
+
+A **category** is a composition quiver with, for every object $A$, an **identity** arrow $id_A$ in $Hom(A, A)$ such that for any $f \in Hom(A, -)$ $f \circ id_A = f$ and for any $g \in Hom(-, A)$ $id_A \circ g = g$.
